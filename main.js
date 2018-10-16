@@ -1,2 +1,2 @@
 
-import * as reactions from "./module.js"
+var reactions = require('./module.js');
