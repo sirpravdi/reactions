@@ -1,2 +1,2 @@
 
-import './module.js';
+import * from "./module.js"
