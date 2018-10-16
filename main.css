@@ -29,3 +29,7 @@
   max-width: 750px;
   justify-items: center;
 }
+
+.moodbox_label input{
+  display: none;
+}
