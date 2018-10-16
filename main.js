@@ -1,2 +1,2 @@
 
-import * from "./module.js"
+import * as reactions from "./module.js"
