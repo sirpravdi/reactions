@@ -13,7 +13,12 @@
     let label = document.createElement('label');
     label.setAttribute('data-emoji', String.fromCodePoint('0x1F' + i));
     label.textContent = String.fromCodePoint('0x1F' + i);
+    label.className = 'moodbox_label';
     moodbox.append(label);
+    let input = document.createElement('input');
+    input.type = 'checkbox';
+    input.name = 'emojis';
+    label.append(input);
   }
   
 })();
