@@ -36,8 +36,15 @@
 
 .moodbox_label{
   cursor: pointer;
+  border: 1px solid gainsboro;
+  border-radius: 20px;
+  padding: 5px;
 }
 
 .moodbox_label input{
   display: none;
+}
+
+.label_checked{
+  border-color: gold;
 }
