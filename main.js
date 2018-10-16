@@ -9,7 +9,7 @@
   moodbox.className = 'moodbox';
   wrap.append(moodbox);
   
-  for(let i = 600; i<=638; i++){
+  for(let i = 600; i < 638; i++){
     let label = document.createElement('label');
     label.setAttribute('data-emoji', String.fromCodePoint('0x1F' + i));
     label.textContent = String.fromCodePoint('0x1F' + i);
