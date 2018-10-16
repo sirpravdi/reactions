@@ -30,6 +30,10 @@
   justify-items: center;
 }
 
+.moodbox_label{
+  cursor: pointer;
+}
+
 .moodbox_label input{
   display: none;
 }
