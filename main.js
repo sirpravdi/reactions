@@ -1,2 +1,2 @@
 
-var reactions = require('./module.js');
+var reactions = './module.js';
