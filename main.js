@@ -1,2 +1,2 @@
 
-var module = require('./module.js');
+import 'module.js';
