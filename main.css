@@ -22,6 +22,7 @@
   font-size: 16px;
   padding: 5px;
   box-sizing: border-box;
+  font-family: 'Roboto', 'Arial', sans-serif;
 }
 
 .moodbox{
@@ -73,6 +74,7 @@
   background-color: gold; 
   margin-top: 10px;
   cursor: pointer;
+  font-family: 'Roboto', 'Arial', sans-serif;
 }
 
 .moodbox_submit:hover{
