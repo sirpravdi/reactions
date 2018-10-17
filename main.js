@@ -26,14 +26,7 @@
     let input = document.createElement('input');
     input.type = 'checkbox';
     input.name = 'emojis';
-    input.onclick = function(){
-      if (this.checked){
-          this.parentElement.classList.add('label_checked');
-      }
-      else{
-        this.parentElement.classList.remove('label_checked');
-      }
-    }
+    input.onclick = emojiCheck();
     label.append(input);
   }
   let btn_line = document.createElement('div');
@@ -46,4 +39,12 @@
   
 })();
 
+function emojiCheck(){
+  if (this.checked){
+          this.parentElement.classList.add('label_checked');
+      }
+      else{
+        this.parentElement.classList.remove('label_checked');
+      }
+};
 
