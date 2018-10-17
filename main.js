@@ -26,7 +26,7 @@
     let input = document.createElement('input');
     input.type = 'checkbox';
     input.name = 'emojis';
-    input.addEventListener('click', emojiCheck(evt));
+    input.addEventListener('click', emojiCheck);
     label.append(input);
   }
   let btn_line = document.createElement('div');
