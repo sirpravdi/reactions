@@ -57,11 +57,12 @@ function createPoll(){
 };
 
 function checkInput(){
-  let title = document.getElementsByClassName('title');
-  if (title[0].value == ''){
-    title[0].classList.add('incomplete');
+  let title = document.querySelector('title');
+  if (title.value == ''){
+    title.classList.add('incomplete');
+    return false;
   }
   else{
-    console.log('123');
+    let moodbox = document.getElementsByClassName('title');
   }
 };
