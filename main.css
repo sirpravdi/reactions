@@ -81,4 +81,6 @@
   cursor: pointer;
 }
 
-
+.incomplete{
+  background-color: rgba(255, 0, 0, .2);
+}
