@@ -38,6 +38,8 @@
   wrap.append(btn_line);
   btn_line.append(btn);
   
+  btn.addEventListener('click', createPoll);
+  
 })();
 
 function emojiCheck(){
@@ -49,3 +51,14 @@ function emojiCheck(){
       }
 };
 
+function createPoll(){
+  if (checkInput()) {
+  }
+};
+
+function checkInput(){
+  let title = document.getElementsByClassName('title');
+  if (!title[0].value){
+    title.classList.add('incomplete');
+  }
+};
