@@ -4,6 +4,7 @@
   document.body.append(wrap);
   var title = document.createElement('input');
   title.className = 'title';
+  title.placeholder = 'insert your text here...';
   wrap.append(title);
   var moodbox = document.createElement('div');
   moodbox.className = 'moodbox';
