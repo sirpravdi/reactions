@@ -62,7 +62,10 @@ function checkInput(){
     title.classList.add('incomplete');
     return false;
   }
-  else{
-    let moodbox = document.getElementsByClassName('moodbox');
+  let inputs = document.querySelectorAll('.moodbox input');
+  var selected = inputs.filter(function(item){return item.checked;});
+  if(!selected){
+    moodbox.classList.add('incomplete');
+    return false;
   }
 };
