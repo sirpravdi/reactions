@@ -55,6 +55,11 @@ function emojiCheck(){
 
 function createPoll(){
   if (checkInput()) {
+    let selected = Array.from(document.querySelectorAll('.moodbox input')).filter(function(item){return item.checked;});
+    selected.forEach(function(item, i, arr){
+      localStorage.setItem('picked_emoji_' + i, selected[0].parentElement.getAttribute('data-emoji'));
+    });
+    
   }
 };
 
@@ -63,8 +68,7 @@ function checkInput(){
   if (title.value == ''){
     title.classList.add('incomplete');
   }
-  let inputs = Array.from(document.querySelectorAll('.moodbox input'));
-  var selected = inputs.filter(function(item){return item.checked;});
+  let selected = Array.from(document.querySelectorAll('.moodbox input')).filter(function(item){return item.checked;});
   if (selected == ''){
     document.querySelector('.moodbox').classList.add('incomplete');
   }
