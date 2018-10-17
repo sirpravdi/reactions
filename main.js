@@ -8,7 +8,7 @@
   let title = document.createElement('input');
   title.className = 'title';
   title.placeholder = 'insert your text here...';
-  title.addEventListener('input', function(){document.querySelector('.moodbox').classList.remove('incomplete');});
+  title.addEventListener('change', function(){document.querySelector('.moodbox').classList.remove('incomplete');});
   wrap.append(title);
   
   let text2 = document.createElement('h1');
