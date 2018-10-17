@@ -50,12 +50,28 @@
   border-color: gold;
 }
 
-.moodbox_submit{
-  width: 5%;
-}
-
 .moodbox_btnline{ 
   width: 35%;
   min-width: 500px;
   max-width: 750px;
+  display: flex;
+  align-self: center;
 }
+
+.moodbox_submit{
+  width: 100px;
+  margin-left: auto;
+  margin-left: auto;
+  height: 30px;
+  border: 1px solid gray;
+  border-radius: 5px;
+  background-color: gold; 
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.moodbox_submit:hover{
+  cursor: pointer;
+}
+
+
