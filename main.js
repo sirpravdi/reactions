@@ -18,6 +18,14 @@
     let input = document.createElement('input');
     input.type = 'checkbox';
     input.name = 'emojis';
+    input.onclick = function(){
+      if (this.checked){
+          this.parentElement.classList.add('label_checked');
+      }
+      else{
+        this.parentElement.classList.remove('label_checked');
+      }
+    }
     label.append(input);
   }
   
