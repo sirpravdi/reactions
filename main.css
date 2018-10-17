@@ -49,3 +49,13 @@
 .label_checked{
   border-color: gold;
 }
+
+.moodbox_submit{
+  width: 5%;
+}
+
+.moodbox_btnline{ 
+  width: 35%;
+  min-width: 500px;
+  max-width: 750px;
+}
