@@ -31,7 +31,8 @@
   }
   let button = document.createElement('button');
   button.className = 'moodbox_submit';
-  
+  button.type = 'button';
+  wrap.append(button);
   
 })();
 
