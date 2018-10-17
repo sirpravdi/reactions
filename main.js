@@ -43,6 +43,7 @@
 })();
 
 function emojiCheck(){
+  document.querySelector('.moodbox').classList.remove('incomplete');
   if (this.checked){
           this.parentElement.classList.add('label_checked');
       }
