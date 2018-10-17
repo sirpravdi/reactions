@@ -76,4 +76,5 @@ function checkInput(){
   if((title.value == '')||(selected == '')){
     return false;
   }
+  return true;
 };
