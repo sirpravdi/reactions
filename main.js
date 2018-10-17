@@ -4,7 +4,7 @@
   document.body.append(wrap);
   let text1 = document.createElement('h1');
   text1.innerText = 'Step 1. Specify poll title';
-  wrap.appen(text1);
+  wrap.append(text1);
   let title = document.createElement('input');
   title.className = 'title';
   title.placeholder = 'insert your text here...';
@@ -12,7 +12,7 @@
   
   let text2 = document.createElement('h1');
   text2.innerText = 'Step 2. Select emojis';
-  wrap.appen(text2);
+  wrap.append(text2);
   let moodbox = document.createElement('div');
   moodbox.className = 'moodbox';
   wrap.append(moodbox);
