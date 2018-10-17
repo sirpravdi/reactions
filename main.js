@@ -59,7 +59,7 @@ function createPoll(){
 function checkInput(){
   let title = document.getElementsByClassName('title');
   if (title[0].value=''){
-    title.classList.add('incomplete');
+    title[0].classList.add('incomplete');
   }
   else{
     console.log('123');
