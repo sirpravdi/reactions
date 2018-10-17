@@ -1,12 +1,12 @@
 (function (){
-  var wrap = document.createElement('div');
+  let wrap = document.createElement('div');
   wrap.className = 'wrapper';
   document.body.append(wrap);
-  var title = document.createElement('input');
+  let title = document.createElement('input');
   title.className = 'title';
   title.placeholder = 'insert your text here...';
   wrap.append(title);
-  var moodbox = document.createElement('div');
+  let moodbox = document.createElement('div');
   moodbox.className = 'moodbox';
   wrap.append(moodbox);
   
@@ -29,6 +29,9 @@
     }
     label.append(input);
   }
+  let button = document.createElement('button');
+  button.className = 'moodbox_submit';
+  
   
 })();
 
