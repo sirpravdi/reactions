@@ -65,7 +65,7 @@ function checkInput(){
   let inputs = Array.from(document.querySelectorAll('.moodbox input'));
   var selected = inputs.filter(function(item){return item.checked;});
   if(!selected){
-    moodbox.classList.add('incomplete');
+    document.querySelector('.moodbox').classList.add('incomplete');
     return false;
   }
 };
