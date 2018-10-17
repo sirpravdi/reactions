@@ -34,7 +34,7 @@
   btn_line.className = 'moodbox_btnline';
   btn.className = 'moodbox_submit';
   btn.type = 'button';
-  btn.value = 'Submit';
+  btn.innerText = 'Submit';
   wrap.append(btn_line);
   btn_line.append(btn);
   
