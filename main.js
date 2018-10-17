@@ -62,12 +62,13 @@ function checkInput(){
   let title = document.querySelector('.title');
   if (title.value == ''){
     title.classList.add('incomplete');
-    return false;
   }
   let inputs = Array.from(document.querySelectorAll('.moodbox input'));
   var selected = inputs.filter(function(item){return item.checked;});
   if (selected == ''){
     document.querySelector('.moodbox').classList.add('incomplete');
+  }
+  if((title.value == '')||(selected == '')){
     return false;
   }
 };
