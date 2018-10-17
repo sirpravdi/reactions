@@ -29,10 +29,13 @@
     }
     label.append(input);
   }
-  let button = document.createElement('button');
-  button.className = 'moodbox_submit';
-  button.type = 'button';
-  wrap.append(button);
+  let btn_line = document.createElement('div');
+  let btn = document.createElement('button');
+  btn_line.className = 'moodbox_btnline';
+  btn.className = 'moodbox_submit';
+  btn.type = 'button';
+  wrap.append(btn_line);
+  btn_line.append(btn);
   
 })();
 
