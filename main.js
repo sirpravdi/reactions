@@ -30,6 +30,7 @@
     input.addEventListener('click', emojiCheck);
     label.append(input);
   }
+  
   let btn_line = document.createElement('div');
   let btn = document.createElement('button');
   btn_line.className = 'moodbox_btnline';
@@ -38,7 +39,6 @@
   btn.innerText = 'Submit';
   wrap.append(btn_line);
   btn_line.append(btn);
-  
   btn.addEventListener('click', createPoll);
   
 })();
@@ -63,6 +63,10 @@ function createPoll(){
     });
     
     document.querySelector('.wrapper').innerHTML = '';
+    document.querySelector('.wrapper').style['flex-flow'] = 'row';
+    let poll_title = document.createElement('span');
+    poll.title.innerText = localStorage.getItem('title');
+    
     
   }
 };
