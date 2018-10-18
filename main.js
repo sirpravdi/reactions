@@ -65,7 +65,7 @@ function createPoll(){
     document.querySelector('.wrapper').innerHTML = '';
     document.querySelector('.wrapper').style['flex-flow'] = 'row';
     let poll_title = document.createElement('span');
-    poll.title.innerText = localStorage.getItem('title');
+    poll_title.innerText = localStorage.getItem('title');
     
     
   }
