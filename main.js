@@ -62,12 +62,12 @@ function createPoll(){
       localStorage.setItem('picked_emoji_' + i, selected[0].parentElement.getAttribute('data-emoji'));
     });
     
-    document.querySelector('.wrapper').innerHTML = '';
-    document.querySelector('.wrapper').style['flex-flow'] = 'row';
+    let wrap = document.querySelector('.wrapper');
+    wrap.innerHTML = '';
+    wrap.style['flex-flow'] = 'row';
     let poll_title = document.createElement('span');
     poll_title.innerText = localStorage.getItem('title');
-    
-    
+    wrap.append(poll_title);
   }
 };
 
