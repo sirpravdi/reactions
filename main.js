@@ -72,6 +72,7 @@ function createPoll(){
     let i = 0;
     while(localStorage.getItem('picked_emoji_' + i)){
       let counter = document.createElement('div');
+      counter.className = 'counter';
       wrap.append(counter);
       let label = document.createElement('label');
       label.className = 'picked_emoji';
