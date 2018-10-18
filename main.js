@@ -1,4 +1,5 @@
 (function Init(){
+  localStorage.clear();
   let wrap = document.createElement('div');
   wrap.className = 'wrapper';
   document.body.append(wrap);
