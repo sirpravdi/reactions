@@ -79,6 +79,7 @@ function createPoll(){
       let label = document.createElement('label');
       label.className = 'picked_emoji';
       label.textContent = localStorage.getItem('picked_emoji_' + i);
+      label.setAttribute('data-counter', i);
       counter.append(label);
       let input = document.createElement('input');
       input.type = 'radio';
@@ -99,8 +100,11 @@ function createPoll(){
 function pollClick(){
    if (document.querySelector('.picked')){
     document.querySelector('.picked').classList.remove('picked');
+    localStorage.setItem('index' + document.querySelector('.picked').getAttribute('data-counter'), localStorage.getItem('index' + document.querySelector('.picked').getAttribute('data-counter') - 1);
    }
    this.parentElement.classList.add('picked');
+   this.parentElement.getAttribute('data-counter');
+   localStorage.setItem('index' + this.parentElement.getAttribute('data-counter'), localStorage.getItem('index' + this.parentElement.getAttribute('data-counter') + 1);
 };
 
 function checkInput(){
