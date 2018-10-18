@@ -40,6 +40,7 @@
   box-sizing: border-box;
 }
 
+.picked_emoji,
 .moodbox_label{
   cursor: pointer;
   border: 1px solid gainsboro;
@@ -49,6 +50,7 @@
   box-sizing: border-box;
 }
 
+.picked_emoji input,
 .moodbox_label input{
   display: none;
 }
