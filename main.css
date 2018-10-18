@@ -90,7 +90,6 @@
 
 .poll_title{
   align-self:center;
-  font-family: 'Roboto', 'Arial', sans-serif;
 }
 
 .picked_emoji{
@@ -99,4 +98,8 @@
 
 .picked_emoji:hover{
   box-shadow: 1px 1px 10px 0px gold;
+}
+
+.counter{
+  font-family: 'Roboto', 'Arial', sans-serif;
 }
