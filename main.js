@@ -79,6 +79,8 @@ function createPoll(){
       label.textContent = localStorage.getItem('picked_emoji_' + i);
       counter.append(label);
       let input = document.createElement('input');
+      input.type = 'radio';
+      input.name = 'poll';
       label.append(input);
       let index = document.createElement('span');
       index.id = 'index' + i;
