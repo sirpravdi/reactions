@@ -59,7 +59,7 @@ function createPoll(){
     
     let selected = Array.from(document.querySelectorAll('.moodbox input')).filter(function(item){return item.checked;});
     selected.forEach(function(item, i, arr){
-      localStorage.setItem('picked_emoji_' + i, selected[0].parentElement.getAttribute('data-emoji'));
+      localStorage.setItem('picked_emoji_' + i, item.parentElement.getAttribute('data-emoji'));
     });
     
     let wrap = document.querySelector('.wrapper');
