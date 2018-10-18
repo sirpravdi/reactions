@@ -87,3 +87,7 @@
 .incomplete{
   background-color: rgba(255, 0, 0, .2);
 }
+
+.poll_title{
+  align-self:center;
+}
