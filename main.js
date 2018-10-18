@@ -71,16 +71,18 @@ function createPoll(){
     wrap.append(poll_title);
     let i = 0;
     while(localStorage.getItem('picked_emoji_' + i)){
+      let counter = document.createElement('div');
+      wrap.append(counter);
       let label = document.createElement('label');
       label.className = 'picked_emoji';
       label.textContent = localStorage.getItem('picked_emoji_' + i);
-      wrap.append(label);
+      counter.append(label);
       let input = document.createElement('input');
-      label.append(input);
-      let counter = document.createElement('span');
-      counter.id = 'counter_' + i;
-      counter.innerText = '0';
-      label.append(counter);
+      counter.append(input);
+      let index = document.createElement('span');
+      index.id = 'index' + i;
+      index.innerText = '0';
+      label.append(index);
       i++;
     }
     
