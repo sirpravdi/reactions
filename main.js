@@ -66,6 +66,7 @@ function createPoll(){
     wrap.innerHTML = '';
     wrap.style['flex-flow'] = 'row';
     let poll_title = document.createElement('span');
+    poll_title.className = 'poll_title';
     poll_title.innerText = localStorage.getItem('title');
     wrap.append(poll_title);
     let i = 0;
