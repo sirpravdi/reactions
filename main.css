@@ -89,7 +89,8 @@
 }
 
 .poll_title{
-  align-self:center;
+  align-self:center;  
+  font-family: 'Roboto', 'Arial', sans-serif;
 }
 
 .picked_emoji{
