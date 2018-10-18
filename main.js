@@ -100,7 +100,7 @@ function createPoll(){
 function pollClick(){
    if (document.querySelector('.picked')){
     document.querySelector('.picked').classList.remove('picked');
-    localStorage.setItem('index' + document.querySelector('.picked').getAttribute('data-counter'), localStorage.getItem('index' + document.querySelector('.picked').getAttribute('data-counter') - 1);
+    localStorage.setItem('index' + document.querySelector('.picked').getAttribute('data-counter'), localStorage.getItem('index' + document.querySelector('.picked').getAttribute('data-counter') - 1));
    }
    this.parentElement.classList.add('picked');
    this.parentElement.getAttribute('data-counter');
