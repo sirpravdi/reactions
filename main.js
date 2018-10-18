@@ -84,7 +84,7 @@ function createPoll(){
       input.addEventListener('click', pollClick);
       label.append(input);
       let index = document.createElement('span');
-      index.id = 'index' + i;
+      index.setAttribute('data-index', 'index' + i);
       index.innerText = '0';
       localStorage.setItem('index' + i, 0);
       counter.append(index);
