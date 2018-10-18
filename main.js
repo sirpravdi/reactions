@@ -105,12 +105,12 @@ function pollClick(){
      localStorage.setItem('index' + prev.getAttribute('data-counter'), parseInt(localStorage.getItem('index' + prev.getAttribute('data-counter'))) - 1); 
      document.querySelector('[data-index="index'+ prev.getAttribute('data-counter') +'"]').innerText = localStorage.getItem('index' + prev.getAttribute('data-counter'));
    }
-   if (this != prev){
+  if ((!prev)||(prev!=this)){
      this.parentElement.classList.add('picked');
      this.parentElement.getAttribute('data-counter');
      localStorage.setItem('index' + this.parentElement.getAttribute('data-counter'), parseInt(localStorage.getItem('index' + this.parentElement.getAttribute('data-counter'))) + 1);
      document.querySelector('[data-index="index'+ this.parentElement.getAttribute('data-counter') +'"]').innerText = localStorage.getItem('index' + this.parentElement.getAttribute('data-counter'));
-   }
+  }
 };
 
 function checkInput(){
