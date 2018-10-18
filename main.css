@@ -103,3 +103,7 @@
 .counter{
   font-family: 'Roboto', 'Arial', sans-serif;
 }
+
+.picked{
+  background-color: rgba(255, 215, 0, 0.5);
+}
