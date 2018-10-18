@@ -86,6 +86,7 @@ function createPoll(){
       let index = document.createElement('span');
       index.id = 'index' + i;
       index.innerText = '0';
+      localStorage.setItem('index' + i, 0);
       counter.append(index);
       i++;
     }
