@@ -70,7 +70,11 @@ function createPoll(){
     wrap.append(poll_title);
     let i = 0;
     while(localStorage.getItem('picked_emoji_' + i)){
-      console.log(i);
+      let label = document.createElement('label');
+      label.className = 'picked_emoji';
+      label.textContent = localStorage.getItem('picked_emoji_' + i);
+      wrap.append(label);
+      let input = document.createElement('input');
       i++;
     }
     
