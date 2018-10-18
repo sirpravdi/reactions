@@ -68,6 +68,12 @@ function createPoll(){
     let poll_title = document.createElement('span');
     poll_title.innerText = localStorage.getItem('title');
     wrap.append(poll_title);
+    let i = 0;
+    while(localStorage.getItem('picked_emoji_' + i)){
+      console.log(i);
+      i++;
+    }
+    
   }
 };
 
