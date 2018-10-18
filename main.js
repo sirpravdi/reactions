@@ -105,6 +105,8 @@ function pollClick(){
      localStorage.setItem('index' + prev.getAttribute('data-counter'), parseInt(localStorage.getItem('index' + prev.getAttribute('data-counter'))) - 1); 
      document.querySelector('[data-index="index'+ prev.getAttribute('data-counter') +'"]').innerText = localStorage.getItem('index' + prev.getAttribute('data-counter'));
    }
+  console.log(prev);
+  console.log(this);
   if ((!prev)||(prev!=this)){
      this.parentElement.classList.add('picked');
      this.parentElement.getAttribute('data-counter');
