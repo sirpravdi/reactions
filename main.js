@@ -101,11 +101,13 @@ function pollClick(){
    if (document.querySelector('.picked')){
      let prev = document.querySelector('.picked');
      prev.classList.remove('picked');
-     localStorage.setItem('index' + prev.getAttribute('data-counter'), localStorage.getItem('index' + prev.getAttribute('data-counter')) - 1); 
+     localStorage.setItem('index' + prev.getAttribute('data-counter'), parseInt(localStorage.getItem('index' + prev.getAttribute('data-counter')))--); 
+     document.querySelector('[data-index="index'+ prev.getAttribute('data-counter') +'"]').innerText = localStorage.getItem('index' + prev.getAttribute('data-counter'));
    }
    this.parentElement.classList.add('picked');
    this.parentElement.getAttribute('data-counter');
-   localStorage.setItem('index' + this.parentElement.getAttribute('data-counter'), localStorage.getItem('index' + this.parentElement.getAttribute('data-counter')) + 1);
+   localStorage.setItem('index' + this.parentElement.getAttribute('data-counter'), parseInt(localStorage.getItem('index' + this.parentElement.getAttribute('data-counter')))++ );
+   document.querySelector('[data-index="index'+ this.parentElement.getAttribute('data-counter') +'"]').innerText = localStorage.getItem('index' + this.parentElement.getAttribute('data-counter'));
 };
 
 function checkInput(){
