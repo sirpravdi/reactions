@@ -65,6 +65,8 @@ function createPoll(){
     let wrap = document.querySelector('.wrapper');
     wrap.innerHTML = '';
     wrap.style['flex-flow'] = 'row';
+    wrap.style['justify-content'] = 'center';
+    wrap.style['margin-top'] = '5%';
     let poll_title = document.createElement('span');
     poll_title.className = 'poll_title';
     poll_title.innerText = localStorage.getItem('title');
