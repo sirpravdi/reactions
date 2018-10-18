@@ -82,7 +82,10 @@ function createPoll(){
       input.type = 'radio';
       input.name = 'poll';
       input.addEventListener('click', function(){ 
-        this.parentElement.classList.add('picked');
+        if (this.checked){
+          document.querySelector('.picked').classList.remove('picked');
+          this.parentElement.classList.add('picked');
+        }
       });
       label.append(input);
       let index = document.createElement('span');
