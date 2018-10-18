@@ -1,4 +1,4 @@
-(function (){
+(function Init(){
   let wrap = document.createElement('div');
   wrap.className = 'wrapper';
   document.body.append(wrap);
@@ -55,10 +55,14 @@ function emojiCheck(){
 
 function createPoll(){
   if (checkInput()) {
+    localStorage.setItem('title', document.querySelector('.title').value);
+    
     let selected = Array.from(document.querySelectorAll('.moodbox input')).filter(function(item){return item.checked;});
     selected.forEach(function(item, i, arr){
       localStorage.setItem('picked_emoji_' + i, selected[0].parentElement.getAttribute('data-emoji'));
     });
+    
+    document.querySelector('.wrapper').innerHTML = '';
     
   }
 };
