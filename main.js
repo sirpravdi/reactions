@@ -107,7 +107,7 @@ function pollClick(){
    }
   console.log(prev);
   console.log(this);
-  if ((!prev)||(prev!=this)){
+  if ((!prev)||(prev!=this.parentElement)){
      this.parentElement.classList.add('picked');
      this.parentElement.getAttribute('data-counter');
      localStorage.setItem('index' + this.parentElement.getAttribute('data-counter'), parseInt(localStorage.getItem('index' + this.parentElement.getAttribute('data-counter'))) + 1);
