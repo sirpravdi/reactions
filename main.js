@@ -99,10 +99,13 @@ function createPoll(){
 
 function pollClick(){
    if (document.querySelector('.picked')){
-    document.querySelector('.picked').classList.remove('picked');
+     let prev = document.querySelector('.picked');
+     prev.classList.remove('picked');
+     localStorage.setItem('index' + prev.getAttribute('data-counter'), localStorage.getItem('index' + prev.getAttribute('data-counter')) - 1); 
    }
    this.parentElement.classList.add('picked');
    this.parentElement.getAttribute('data-counter');
+   localStorage.setItem('index' + this.getAttribute('data-counter'), localStorage.getItem('index' + this.getAttribute('data-counter')) + 1);
 };
 
 function checkInput(){
