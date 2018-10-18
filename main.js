@@ -81,12 +81,7 @@ function createPoll(){
       let input = document.createElement('input');
       input.type = 'radio';
       input.name = 'poll';
-      input.addEventListener('click', function(){ 
-        if (document.querySelector('.picked')){
-          document.querySelector('.picked').classList.remove('picked');
-        }
-        this.parentElement.classList.add('picked');
-      });
+      input.addEventListener('click', pollClick);
       label.append(input);
       let index = document.createElement('span');
       index.id = 'index' + i;
@@ -96,6 +91,13 @@ function createPoll(){
     }
     
   }
+};
+
+function pollClick(){
+   if (document.querySelector('.picked')){
+    document.querySelector('.picked').classList.remove('picked');
+   }
+   this.parentElement.classList.add('picked');
 };
 
 function checkInput(){
