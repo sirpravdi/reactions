@@ -105,7 +105,7 @@ function pollClick(){
    }
    this.parentElement.classList.add('picked');
    this.parentElement.getAttribute('data-counter');
-   localStorage.setItem('index' + this.getAttribute('data-counter'), localStorage.getItem('index' + this.getAttribute('data-counter')) + 1);
+   localStorage.setItem('index' + this.parentElement.getAttribute('data-counter'), localStorage.getItem('index' + this.parentElement.getAttribute('data-counter')) + 1);
 };
 
 function checkInput(){
