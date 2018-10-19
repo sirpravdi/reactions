@@ -43,7 +43,7 @@ var Reactions = (function() {
     if ((!prev) || (prev != this.parentElement)) {
       this.parentElement.classList.add('reactions-wrapper__emoji_picked');
       localStorage.setItem('index' + this.parentElement.dataset.reactionsCounter, parseInt(localStorage.getItem('index' + this.parentElement.dataset.reactionsCounter)) + 1);
-      wrap.querySelector('[data--reactions-index="index' + this.parentElement.dataset.reactionsCounter + '"]').innerText = localStorage.getItem('index' + this.parentElement.dataset.reactionsCounter);
+      wrap.querySelector('[data-reactions-index="index' + this.parentElement.dataset.reactionsCounter + '"]').innerText = localStorage.getItem('index' + this.parentElement.dataset.reactionsCounter);
     }
   };
   
