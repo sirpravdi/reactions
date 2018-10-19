@@ -1,4 +1,4 @@
-(function Init(){
+var initPoll = (function(){
   localStorage.clear();
   let wrap = document.createElement('div');
   wrap.className = 'wrapper';
@@ -42,9 +42,7 @@
   btn_line.append(btn);
   btn.addEventListener('click', createPoll);
   
-})();
-
-function emojiCheck(){
+  function emojiCheck(){
   document.querySelector('.moodbox').classList.remove('incomplete');
   if (this.checked){
           this.parentElement.classList.add('label_checked');
@@ -53,6 +51,10 @@ function emojiCheck(){
         this.parentElement.classList.remove('label_checked');
       }
 };
+  
+})();
+
+var createPoll = (function(){
 
 function createPoll(){
   if (checkInput()) {
@@ -94,7 +96,6 @@ function createPoll(){
       counter.append(index);
       i++;
     }
-    
   }
 };
 
@@ -129,3 +130,4 @@ function checkInput(){
   }
   return true;
 };
+})();
