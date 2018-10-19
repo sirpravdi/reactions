@@ -1,33 +1,26 @@
 var Reactions = (function() {
 
   function createPoll(data) {
-      localStorage.setItem('title', data.title);
-
-      data.reactions.forEach(function(item, i, arr) {
-        localStorage.setItem('picked_emoji_' + i, String.fromCodePoint(item));
-      });
-
       let wrap = document.createElement('div');
-      wrap.className = 'wrapper';
+      wrap.classList.add('wrapper');
       document.body.append(wrap);
       let poll_title = document.createElement('span');
-      poll_title.className = 'poll_title';
-      poll_title.innerText = localStorage.getItem('title');
+      poll_title.classList.add('poll_title');
+      poll_title.innerText = data.title;
       wrap.append(poll_title);
-      let i = 0;
-      while (localStorage.getItem('picked_emoji_' + i)) {
+      data.reactions.forEach(function(item, i, arr) {
         let counter = document.createElement('div');
-        counter.className = 'counter';
+        counter.classList.add('counter');
         wrap.append(counter);
         let label = document.createElement('label');
-        label.className = 'picked_emoji';
-        label.textContent = localStorage.getItem('picked_emoji_' + i);
+        label.classList('picked_emoji';
+        label.textContent = String.fromCodePoint(item);
         label.setAttribute('data-counter', i);
         counter.append(label);
         let input = document.createElement('input');
         input.type = 'radio';
         input.name = 'poll';
-        input.addEventListener('click', pollClick);
+        input.addEventListener('click', pollClick(wrap));
         label.append(input);
         let index = document.createElement('span');
         index.setAttribute('data-index', 'index' + i);
@@ -36,22 +29,20 @@ var Reactions = (function() {
         }
         index.innerText = localStorage.getItem('index' + i);
         counter.append(index);
-        i++;
-    }
+    })
   };
 
-  function pollClick() {
-    if (document.querySelector('.picked')) {
-      var prev = document.querySelector('.picked');
+  function pollClick(wrap) {
+    if (wrap.querySelector('.picked')) {
+      var prev = wrap.querySelector('.picked');
       prev.classList.remove('picked');
-      localStorage.setItem('index' + prev.getAttribute('data-counter'), parseInt(localStorage.getItem('index' + prev.getAttribute('data-counter'))) - 1);
-      document.querySelector('[data-index="index' + prev.getAttribute('data-counter') + '"]').innerText = localStorage.getItem('index' + prev.getAttribute('data-counter'));
+      localStorage.setItem('index' + prev.dataset.counter, parseInt(localStorage.getItem('index' + prev.dataset.counter)) - 1);
+      wrap.querySelector('[data-index="index' + prev.dataset.counter + '"]').innerText = localStorage.getItem('index' + prev.dataset.counter);
     }
     if ((!prev) || (prev != this.parentElement)) {
       this.parentElement.classList.add('picked');
-      this.parentElement.getAttribute('data-counter');
-      localStorage.setItem('index' + this.parentElement.getAttribute('data-counter'), parseInt(localStorage.getItem('index' + this.parentElement.getAttribute('data-counter'))) + 1);
-      document.querySelector('[data-index="index' + this.parentElement.getAttribute('data-counter') + '"]').innerText = localStorage.getItem('index' + this.parentElement.getAttribute('data-counter'));
+      localStorage.setItem('index' + this.parentElement.dataset.counter, parseInt(localStorage.getItem('index' + this.parentElement.dataset.counter)) + 1);
+      wrap.querySelector('[data-index="index' + this.parentElement.dataset.counter + '"]').innerText = localStorage.getItem('index' + this.parentElement.dataset.counter);
     }
   };
   
