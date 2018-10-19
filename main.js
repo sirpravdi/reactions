@@ -64,7 +64,6 @@
 var Reactions = (function() {
 
   function createPoll(data) {
-    if (checkInput()) {
       localStorage.setItem('title', data.title);
 
       data.reactions.forEach(function(item, i, arr) {
@@ -99,7 +98,6 @@ var Reactions = (function() {
         localStorage.setItem('index' + i, 0);
         counter.append(index);
         i++;
-      }
     }
   };
 
@@ -118,7 +116,7 @@ var Reactions = (function() {
     }
   };
 
-  function checkInput() {
+  /*function checkInput() {
     let title = document.querySelector('.title');
     if (title.value == '') {
       title.classList.add('incomplete');
@@ -133,7 +131,7 @@ var Reactions = (function() {
       return false;
     }
     return true;
-  };
+  };*/
   
   return{
     create: createPoll
