@@ -67,7 +67,7 @@ var Reactions = (function() {
       localStorage.setItem('title', data.title);
 
       data.reactions.forEach(function(item, i, arr) {
-        localStorage.setItem('picked_emoji_' + i, item);
+        localStorage.setItem('picked_emoji_' + i, String.fromCodePoint(item));
       });
 
       let wrap = document.createElement('div');
