@@ -138,4 +138,4 @@ var Reactions = (function() {
   }
 })();
 
-Reactions.create({title: 'What do yout think?', reactions: ['0x1F929','0x1F914','0x1F92F']});
+Reactions.create({title: 'What do yout think?', reactions: ['0x1F600','0x1F914','0x1F644']});
