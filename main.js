@@ -1,4 +1,4 @@
-var initPoll = (function() {
+/*var initPoll = (function() {
   function initPoll(){
     localStorage.clear();
     let wrap = document.createElement('div');
@@ -59,26 +59,21 @@ var initPoll = (function() {
     initPoll: initPoll
   }
   
-})();
+})();*/
 
-var createPoll = (function() {
+var Reactions = (function() {
 
-  function createPoll() {
+  function createPoll(data) {
     if (checkInput()) {
-      localStorage.setItem('title', document.querySelector('.title').value);
+      localStorage.setItem('title', data.title);
 
-      let selected = Array.from(document.querySelectorAll('.moodbox input')).filter(function(item) {
-        return item.checked;
-      });
-      selected.forEach(function(item, i, arr) {
-        localStorage.setItem('picked_emoji_' + i, item.parentElement.getAttribute('data-emoji'));
+      data.reactions.forEach(function(item, i, arr) {
+        localStorage.setItem('picked_emoji_' + i, item);
       });
 
-      let wrap = document.querySelector('.wrapper');
-      wrap.innerHTML = '';
-      wrap.style['flex-flow'] = 'row';
-      wrap.style['justify-content'] = 'center';
-      wrap.style['margin-top'] = '5%';
+      let wrap = document.createElement('div');
+      wrap.className = 'wrapper';
+      document.body.append(wrap);
       let poll_title = document.createElement('span');
       poll_title.className = 'poll_title';
       poll_title.innerText = localStorage.getItem('title');
@@ -141,8 +136,8 @@ var createPoll = (function() {
   };
   
   return{
-    createPoll: createPoll
+    create: createPoll
   }
 })();
 
-initPoll.initPoll();
+Reactions.create({title: 'What do yout think?', reactions: ['0x1F929','0x1F914','0x1F92F']});
