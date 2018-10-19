@@ -38,7 +38,7 @@ var Reactions = (function() {
       var prev = wrap.querySelector('.reactions-wrapper__emoji_picked');
       prev.classList.remove('reactions-wrapper__emoji_picked');
       localStorage.setItem('index' + prev.dataset.reactionsCounter, parseInt(localStorage.getItem('index' + prev.dataset.reactionsCounter)) - 1);
-      wrap.querySelector('[data-reactions-index="index' + prev.dataset.reactionsCounter + '"]').innerText = localStorage.getItem('index' + prev.dataset.counter);
+      wrap.querySelector('[data-reactions-index="index' + prev.dataset.reactionsCounter + '"]').innerText = localStorage.getItem('index' + prev.dataset.reactionsCounter);
     }
     if ((!prev) || (prev != this.parentElement)) {
       this.parentElement.classList.add('reactions-wrapper__emoji_picked');
