@@ -34,6 +34,7 @@ class Reactions {
     })
   }
 
+
   pollClick() {
     var wrap = document.querySelector('.reactions-wrapper');
     if (wrap.querySelector('.reactions-wrapper__emoji_picked')) {
