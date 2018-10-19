@@ -33,7 +33,7 @@ var Reactions = (function() {
   };
 
   function pollClick() {
-    wrap = document.querySelector('.reactions-wrapper');
+    var wrap = document.querySelector('.reactions-wrapper');
     if (wrap.querySelector('.reactions-wrapper__emoji_picked')) {
       var prev = wrap.querySelector('.reactions-wrapper__emoji_picked');
       prev.classList.remove('reactions-wrapper__emoji_picked');
