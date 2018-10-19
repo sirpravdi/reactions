@@ -13,14 +13,14 @@ var Reactions = (function() {
         counter.classList.add('counter');
         wrap.append(counter);
         let label = document.createElement('label');
-        label.classList('picked_emoji';
+        label.classList.add('picked_emoji');
         label.textContent = String.fromCodePoint(item);
         label.setAttribute('data-counter', i);
         counter.append(label);
         let input = document.createElement('input');
         input.type = 'radio';
         input.name = 'poll';
-        input.addEventListener('click', pollClick(wrap));
+        input.addEventListener('click', pollClick);
         label.append(input);
         let index = document.createElement('span');
         index.setAttribute('data-index', 'index' + i);
@@ -32,7 +32,8 @@ var Reactions = (function() {
     })
   };
 
-  function pollClick(wrap) {
+  function pollClick() {
+    wrap = document.querySelector('.wrapper');
     if (wrap.querySelector('.picked')) {
       var prev = wrap.querySelector('.picked');
       prev.classList.remove('picked');
