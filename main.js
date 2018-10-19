@@ -1,28 +1,21 @@
 var Reactions = (function() {
 
   function createPoll(data) {
-      localStorage.setItem('title', data.title);
-
-      data.reactions.forEach(function(item, i, arr) {
-        localStorage.setItem('picked_emoji_' + i, String.fromCodePoint(item));
-      });
-
       let wrap = document.createElement('div');
-      wrap.className = 'wrapper';
+      wrap.classList.add('reactions-wrapper');
       document.body.append(wrap);
       let poll_title = document.createElement('span');
-      poll_title.className = 'poll_title';
-      poll_title.innerText = localStorage.getItem('title');
+      poll_title.classList.add('reactions-wrapper__title');
+      poll_title.innerText = data.title;
       wrap.append(poll_title);
-      let i = 0;
-      while (localStorage.getItem('picked_emoji_' + i)) {
+      data.reactions.forEach(function(item, i, arr) {
         let counter = document.createElement('div');
-        counter.className = 'counter';
+        counter.classList.add('reactions-wrapper__counter');
         wrap.append(counter);
         let label = document.createElement('label');
-        label.className = 'picked_emoji';
-        label.textContent = localStorage.getItem('picked_emoji_' + i);
-        label.setAttribute('data-counter', i);
+        label.classList.add('reactions-wrapper__emoji');
+        label.textContent = String.fromCodePoint(item);
+        label.dataset.reactionsCounter = i;
         counter.append(label);
         let input = document.createElement('input');
         input.type = 'radio';
@@ -30,28 +23,27 @@ var Reactions = (function() {
         input.addEventListener('click', pollClick);
         label.append(input);
         let index = document.createElement('span');
-        index.setAttribute('data-index', 'index' + i);
-        if(!localStorage.getItem('index' + i)){
+        index.dataset.reactionsIndex = 'index' + i;
+        if(!localStorage.getItem('daindex' + i)){
           localStorage.setItem('index' + i, 0);
         }
         index.innerText = localStorage.getItem('index' + i);
         counter.append(index);
-        i++;
-    }
+    })
   };
 
   function pollClick() {
-    if (document.querySelector('.picked')) {
-      var prev = document.querySelector('.picked');
-      prev.classList.remove('picked');
-      localStorage.setItem('index' + prev.getAttribute('data-counter'), parseInt(localStorage.getItem('index' + prev.getAttribute('data-counter'))) - 1);
-      document.querySelector('[data-index="index' + prev.getAttribute('data-counter') + '"]').innerText = localStorage.getItem('index' + prev.getAttribute('data-counter'));
+    wrap = document.querySelector('.reactions-wrapper');
+    if (wrap.querySelector('.reactions-wrapper__emoji_picked')) {
+      var prev = wrap.querySelector('.reactions-wrapper__emoji_picked');
+      prev.classList.remove('reactions-wrapper__emoji_picked');
+      localStorage.setItem('index' + prev.dataset.reactionsCounter, parseInt(localStorage.getItem('index' + prev.dataset.reactionsCounter)) - 1);
+      wrap.querySelector('[data-index="index' + prev.dataset.reactionsCounter + '"]').innerText = localStorage.getItem('index' + prev.dataset.counter);
     }
     if ((!prev) || (prev != this.parentElement)) {
-      this.parentElement.classList.add('picked');
-      this.parentElement.getAttribute('data-counter');
-      localStorage.setItem('index' + this.parentElement.getAttribute('data-counter'), parseInt(localStorage.getItem('index' + this.parentElement.getAttribute('data-counter'))) + 1);
-      document.querySelector('[data-index="index' + this.parentElement.getAttribute('data-counter') + '"]').innerText = localStorage.getItem('index' + this.parentElement.getAttribute('data-counter'));
+      this.parentElement.classList.add('reactions-wrapper__emoji_picked');
+      localStorage.setItem('index' + this.parentElement.dataset.reactionsCounter, parseInt(localStorage.getItem('index' + this.parentElement.dataset.reactionsCounter)) + 1);
+      wrap.querySelector('[data-index="index' + this.parentElement.dataset.reactionsCounter + '"]').innerText = localStorage.getItem('index' + this.parentElement.dataset.reactionsCounter);
     }
   };
   

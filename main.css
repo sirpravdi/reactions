@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
-.wrapper{
+.reactions-wrapper{
   display: flex;
   flex-flow: column;
   min-width: 520px;
@@ -9,42 +9,7 @@
   margin-top: 5%;
 }
 
-.wrapper h1{
-  text-align:center;
-  font-family: 'Roboto', 'Arial', sans-serif;
-}
-
-.title{
-  width: 35%;
-  min-width: 500px;
-  max-width: 750px;
-  align-self: center;
-  border-radius: 4px;
-  border: 1px solid black;
-  height: 30px;
-  font-size: 16px;
-  padding: 5px;
-  box-sizing: border-box;
-  font-family: 'Roboto', 'Arial', sans-serif;
-}
-
-.moodbox{
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-  width: 35%;
-  border: 1px solid black;
-  align-self: center;
-  border-radius: 4px;
-  min-width: 500px;
-  max-width: 750px;
-  justify-items: center;
-  row-gap: 10px;
-  padding: 10px;
-  box-sizing: border-box;
-}
-
-.picked_emoji,
-.moodbox_label{
+.reactions-wrapper__emoji{
   cursor: pointer;
   border: 1px solid gainsboro;
   border-radius: 20px;
@@ -53,61 +18,27 @@
   box-sizing: border-box;
 }
 
-.picked_emoji input,
-.moodbox_label input{
+.reactions-wrapper__emoji input{
   display: none;
 }
 
-.label_checked{
-  border-color: gold;
-}
-
-.moodbox_btnline{ 
-  width: 35%;
-  min-width: 500px;
-  max-width: 750px;
-  display: flex;
-  align-self: center;
-}
-
-.moodbox_submit{
-  width: 100px;
-  margin-left: auto;
-  margin-left: auto;
-  height: 30px;
-  border: 1px solid gray;
-  border-radius: 5px;
-  background-color: gold; 
-  margin-top: 10px;
-  cursor: pointer;
-  font-family: 'Roboto', 'Arial', sans-serif;
-}
-
-.moodbox_submit:hover{
-  cursor: pointer;
-}
-
-.incomplete{
-  background-color: rgba(255, 0, 0, .2);
-}
-
-.poll_title{
+.reactions-wrapper__title{
   align-self:center;  
   font-family: 'Roboto', 'Arial', sans-serif;
 }
 
-.picked_emoji{
+.reactions-wrapper__emoji{
   margin: 0 10px;
 }
 
-.picked_emoji:hover{
+.reactions-wrapper__emoji:hover{
   box-shadow: 1px 1px 10px 0px gold;
 }
 
-.counter{
+.reactions-wrapper__counter{
   font-family: 'Roboto', 'Arial', sans-serif;
 }
 
-.picked{
+.reactions-wrapper__emoji_picked{
   background-color: rgba(255, 215, 0, 0.5);
 }
