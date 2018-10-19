@@ -9,7 +9,7 @@
   margin-top: 5%;
 }
 
-.picked_emoji{
+.reactions-wrapper__emoji{
   cursor: pointer;
   border: 1px solid gainsboro;
   border-radius: 20px;
@@ -18,27 +18,27 @@
   box-sizing: border-box;
 }
 
-.picked_emoji input{
+.reactions-wrapper__emoji input{
   display: none;
 }
 
-.poll_title{
+.reactions-wrapper__title{
   align-self:center;  
   font-family: 'Roboto', 'Arial', sans-serif;
 }
 
-.picked_emoji{
+.reactions-wrapper__emoji{
   margin: 0 10px;
 }
 
-.picked_emoji:hover{
+.reactions-wrapper__emoji:hover{
   box-shadow: 1px 1px 10px 0px gold;
 }
 
-.counter{
+.reactions-wrapper__counter{
   font-family: 'Roboto', 'Arial', sans-serif;
 }
 
-.picked{
+.reactions-wrapper__emoji_picked{
   background-color: rgba(255, 215, 0, 0.5);
 }
