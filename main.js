@@ -94,10 +94,10 @@ var Reactions = (function() {
         label.append(input);
         let index = document.createElement('span');
         index.setAttribute('data-index', 'index' + i);
-        index.innerText = '0';
         if(!localStorage.getItem('index' + i)){
           localStorage.setItem('index' + i, 0);
         }
+        index.innerText = localStorage.getItem('index' + i);
         counter.append(index);
         i++;
     }
