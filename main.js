@@ -95,7 +95,9 @@ var Reactions = (function() {
         let index = document.createElement('span');
         index.setAttribute('data-index', 'index' + i);
         index.innerText = '0';
-        localStorage.setItem('index' + i, 0);
+        if(!localStorage.getItem('index' + i)){
+          localStorage.setItem('index' + i, 0);
+        }
         counter.append(index);
         i++;
     }
