@@ -4,6 +4,9 @@
   display: flex;
   flex-flow: column;
   min-width: 520px;
+  flex-flow: row;
+  justify-content: center;
+  margin-top: 5%;
 }
 
 .wrapper h1{
