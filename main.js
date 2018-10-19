@@ -26,7 +26,7 @@ class Reactions {
         label.append(input);
         let index = document.createElement('span');
         index.dataset.reactionsIndex = 'index' + i;
-        if(!localStorage.getItem('daindex' + i)){
+        if(!localStorage.getItem('index' + i)){
           localStorage.setItem('index' + i, 0);
         }
         index.innerText = localStorage.getItem('index' + i);
