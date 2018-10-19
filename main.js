@@ -140,4 +140,4 @@ var Reactions = (function() {
   }
 })();
 
-Reactions.create({title: 'What do yout think?', reactions: ['0x1F600','0x1F914','0x1F644','0x1F600','0x1F914','0x1F644']});
+Reactions.create({title: 'What do yout think?', reactions: ['0x1F600','0x1F914','0x1F644']});
