@@ -4,75 +4,82 @@
 class Reactions {
     /**
      * Create a reactions poll.
-     * @param {object} data - object containing poll emojis and title.
+     * @param {object} data - object containing poll emojis, title and parent element.
      */
     constructor(data) {
-        const wrap = this.domHelper("div", "reactions-wrapper");
-
-        document.body.append(wrap);
-        let pollTitle = this.domHelper("span", "reactions-wrapper__title");
-
-        pollTitle.innerText = data.title;
+        const wrap = this.createElement("div", "reactions-wrapper");
+        
+        data.parent.append(wrap);
+        let pollTitle = this.createElement("span", "reactions-wrapper__title", {innerText: data.title});
+        
         wrap.append(pollTitle);
         data.reactions.forEach(function (item, i, arr) {
-            let counter = Reactions.prototype.domHelper("div", "reactions-wrapper__counter");
+            let counter = Reactions.prototype.createElement("div", "reactions-wrapper__counter");
 
             wrap.append(counter);
-            let label = Reactions.prototype.domHelper("label", "reactions-wrapper__emoji");
+            let label = Reactions.prototype.createElement("label", "reactions-wrapper__emoji", {textContent: String.fromCodePoint(item)});
 
-            label.textContent = String.fromCodePoint(item);
             label.dataset.reactionsCounter = i;
-            counter.append(label);
-            let input = Reactions.prototype.domHelper("input");
-
-            input.type = "radio";
-            input.name = "poll";
+            counter.append(label);                                    
+            let input = Reactions.prototype.createElement("input", null, {type: "radio", name: "poll"});
+            
             input.addEventListener("click", Reactions.prototype.pollClick);
             label.append(input);
-            let index = Reactions.prototype.domHelper("span");
-
-            index.dataset.reactionsIndex = "index" + i;
-            if (!localStorage.getItem("index" + i)) {
-                localStorage.setItem("index" + i, 0);
+ 
+            if (!localStorage.getItem("reactionIndex" + i)) {
+                localStorage.setItem("reactionIndex" + i, 0);
             }
-            index.innerText = localStorage.getItem("index" + i);
+            let index = Reactions.prototype.createElement("span", null, {innerText: localStorage.getItem("reactionIndex" + i)});
+            
+            index.dataset.reactionsIndex = "index" + i;
+
             counter.append(index);
         });
     }
     /** processing click on emoji */
     pollClick() {
-        var wrap = document.querySelector(".reactions-wrapper");
+        const wrap = document.querySelector(".reactions-wrapper");
 
         if (wrap.querySelector(".reactions-wrapper__emoji_picked")) {
-            var prev = wrap.querySelector(".reactions-wrapper__emoji_picked");
+            let prev = wrap.querySelector(".reactions-wrapper__emoji_picked");
 
             prev.classList.remove("reactions-wrapper__emoji_picked");
-            localStorage.setItem("index" + prev.dataset.reactionsCounter, parseInt(localStorage.getItem("index" + prev.dataset.reactionsCounter)) - 1);
-            wrap.querySelector("[data-reactions-index=\"index" + prev.dataset.reactionsCounter + "\"]").innerText = localStorage.getItem("index" + prev.dataset.reactionsCounter);
+            localStorage.setItem("reactionIndex" + prev.dataset.reactionsCounter, parseInt(localStorage.getItem("reactionIndex" + prev.dataset.reactionsCounter)) - 1);
+            wrap.querySelector("[data-reactions-index=\"index" + prev.dataset.reactionsCounter + "\"]").innerText = localStorage.getItem("reactionIndex" + prev.dataset.reactionsCounter);
         }
         if ((!prev) || (prev != this.parentElement)) {
             this.parentElement.classList.add("reactions-wrapper__emoji_picked");
-            localStorage.setItem("index" + this.parentElement.dataset.reactionsCounter, parseInt(localStorage.getItem("index" + this.parentElement.dataset.reactionsCounter)) + 1);
-            wrap.querySelector("[data-reactions-index=\"index" + this.parentElement.dataset.reactionsCounter + "\"]").innerText = localStorage.getItem("index" + this.parentElement.dataset.reactionsCounter);
+            localStorage.setItem("reactionIndex" + this.parentElement.dataset.reactionsCounter, parseInt(localStorage.getItem("reactionIndex" + this.parentElement.dataset.reactionsCounter)) + 1);
+            wrap.querySelector("[data-reactions-index=\"index" + this.parentElement.dataset.reactionsCounter + "\"]").innerText = localStorage.getItem("reactionIndex" + this.parentElement.dataset.reactionsCounter);
         }
     }
     /** making creation of dom elements easier */
-    domHelper(elName, classList) {
+    createElement(elName, classList, attrList) {
         /**
         * making creation of dom elements easier
         * @param {string} elName - string containing tagName.
-        * @param {string} classList - string containing classes names for new element.
+        * @param {array|string} classList - string containing classes names for new element.
+        * @param {string} attrList - string containing attributes names for new element.
         */
         let el = document.createElement(elName);
-
-        if (Array.isArray(classList)) {
-            el.classList.add(...classList);
-        } else {
-            el.classList.add(classList);
+        
+        if(classList){
+            if (Array.isArray(classList)) {
+                el.classList.add(...classList);
+            } else {
+                el.classList.add(classList);
+            }
+        }
+        
+        for (const attrName in attrList) {
+        		console.log(attrName);
+            if (attrList.hasOwnProperty(attrName)) {
+                el[attrName] = attrList[attrName];
+            }
         }
 
-        return el;
+        return el
     }
 };
 
-new Reactions({title: "What do you think?", reactions: ["0x1F601", "0x1F914", "0x1F644"]});
+new Reactions({parent: document.body, title: "What do you think?", reactions: ["0x1F601", "0x1F914", "0x1F644"]});
