@@ -5,53 +5,58 @@ class Reactions {
     /**
      * Create a reactions poll.
      * @param {object} data - object containing poll emojis, title and parent element.
+     * @param {HTMLElement} data.parent - element where poll is inserted.
+     * @param {string[]} data.reactions - list of poll emojis.
+     * @param {string} title - poll title.
      */
     constructor(data) {
-        const wrap = this.createElement("div", "reactions-wrapper");
+        this.wrap = this.createElement("div", "reactions-wrapper");
         
-        data.parent.append(wrap);
-        let pollTitle = this.createElement("span", "reactions-wrapper__title", {innerText: data.title});
+        document.querySelector(data.parent).append(this.wrap);
+        const pollTitle = this.createElement("span", "reactions-wrapper__title", {innerText: data.title});
         
-        wrap.append(pollTitle);
+        this.wrap.append(pollTitle);
         data.reactions.forEach((item, i, arr) => {
-            let counter = Reactions.prototype.createElement("div", "reactions-wrapper__counter");
+            const counter = this.createElement("div", "reactions-wrapper__counter");
 
-            wrap.append(counter);
-            let label = Reactions.prototype.createElement("label", "reactions-wrapper__emoji", {textContent: String.fromCodePoint(item)});
+            this.wrap.append(counter);
+            const label = this.createElement("label", "reactions-wrapper__emoji", {textContent: String.fromCodePoint(item)});
 
             label.dataset.reactionsCounter = i;
             counter.append(label);                                    
-            let input = Reactions.prototype.createElement("input", null, {type: "radio", name: "poll"});
+            const input = this.createElement("input", null, {type: "radio", name: "poll"});
             
-            input.addEventListener("click", Reactions.prototype.pollClick);
+            input.addEventListener("click", input => this.pollClick(input.target));
             label.append(input);
  
             if (!localStorage.getItem("reactionIndex" + i)) {
                 localStorage.setItem("reactionIndex" + i, 0);
             }
-            let index = Reactions.prototype.createElement("span", null, {innerText: localStorage.getItem("reactionIndex" + i)});
+            const index = this.createElement("span", null, {innerText: localStorage.getItem("reactionIndex" + i)});
             
             index.dataset.reactionsIndex = "index" + i;
 
             counter.append(index);
         });
     }
+    
     /** processing click on emoji */
-    pollClick() {
-        let wrap = document.querySelector(".reactions-wrapper");
+    pollClick(clicked) {
         let prev = null;
 
-        if (wrap.querySelector(".reactions-wrapper__emoji_picked")) {
-            prev = wrap.querySelector(".reactions-wrapper__emoji_picked");
-
-            prev.classList.remove("reactions-wrapper__emoji_picked");
-            localStorage.setItem("reactionIndex" + prev.dataset.reactionsCounter, parseInt(localStorage.getItem("reactionIndex" + prev.dataset.reactionsCounter)) - 1);
-            wrap.querySelector("[data-reactions-index=\"index" + prev.dataset.reactionsCounter + "\"]").innerText = localStorage.getItem("reactionIndex" + prev.dataset.reactionsCounter);
+        if (this.wrap.querySelector(".reactions-wrapper__emoji--picked")) {
+            prev = this.wrap.querySelector(".reactions-wrapper__emoji--picked");
+            prev.classList.remove("reactions-wrapper__emoji--picked");
+            const storageKey = "reactionIndex" + prev.dataset.reactionsCounter;
+            
+            localStorage.setItem(storageKey, parseInt(localStorage.getItem(storageKey)) - 1);
+            this.wrap.querySelector("[data-reactions-index=\"index" + prev.dataset.reactionsCounter + "\"]").innerText = localStorage.getItem(storageKey);
         }
-        if ((!prev) || (prev != this.parentElement)) {
-            this.parentElement.classList.add("reactions-wrapper__emoji_picked");
-            localStorage.setItem("reactionIndex" + this.parentElement.dataset.reactionsCounter, parseInt(localStorage.getItem("reactionIndex" + this.parentElement.dataset.reactionsCounter)) + 1);
-            wrap.querySelector("[data-reactions-index=\"index" + this.parentElement.dataset.reactionsCounter + "\"]").innerText = localStorage.getItem("reactionIndex" + this.parentElement.dataset.reactionsCounter);
+        if ((!prev) || (prev != clicked.parentElement)) {
+            const storageKey2 = "reactionIndex" + clicked.parentElement.dataset.reactionsCounter;
+            clicked.parentElement.classList.add("reactions-wrapper__emoji--picked");
+            localStorage.setItem(storageKey2, parseInt(localStorage.getItem(storageKey2)) + 1);
+            this.wrap.querySelector("[data-reactions-index=\"index" + clicked.parentElement.dataset.reactionsCounter + "\"]").innerText = localStorage.getItem(storageKey2);
         }
     }
     /** making creation of dom elements easier */
@@ -62,7 +67,7 @@ class Reactions {
         * @param {array|string} classList - string containing classes names for new element.
         * @param {string} attrList - string containing attributes names for new element.
         */
-        let el = document.createElement(elName);
+        const el = document.createElement(elName);
         
         if(classList){
             if (Array.isArray(classList)) {
@@ -82,4 +87,4 @@ class Reactions {
     }
 };
 
-new Reactions({parent: document.body, title: "What do you think?", reactions: ["0x1F601", "0x1F914", "0x1F644"]});
+new Reactions({parent: 'body', title: "What do you think?", reactions: ["0x1F601", "0x1F914", "0x1F644"]});
