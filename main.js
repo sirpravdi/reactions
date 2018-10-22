@@ -39,9 +39,10 @@ class Reactions {
     /** processing click on emoji */
     pollClick() {
         let wrap = document.querySelector(".reactions-wrapper");
+        let prev = null;
 
         if (wrap.querySelector(".reactions-wrapper__emoji_picked")) {
-            var prev = wrap.querySelector(".reactions-wrapper__emoji_picked");
+            prev = wrap.querySelector(".reactions-wrapper__emoji_picked");
 
             prev.classList.remove("reactions-wrapper__emoji_picked");
             localStorage.setItem("reactionIndex" + prev.dataset.reactionsCounter, parseInt(localStorage.getItem("reactionIndex" + prev.dataset.reactionsCounter)) - 1);
