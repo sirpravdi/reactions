@@ -38,10 +38,10 @@ class Reactions {
     }
     /** processing click on emoji */
     pollClick() {
-        const wrap = document.querySelector(".reactions-wrapper");
+        let wrap = document.querySelector(".reactions-wrapper");
 
         if (wrap.querySelector(".reactions-wrapper__emoji_picked")) {
-            let prev = wrap.querySelector(".reactions-wrapper__emoji_picked");
+            var prev = wrap.querySelector(".reactions-wrapper__emoji_picked");
 
             prev.classList.remove("reactions-wrapper__emoji_picked");
             localStorage.setItem("reactionIndex" + prev.dataset.reactionsCounter, parseInt(localStorage.getItem("reactionIndex" + prev.dataset.reactionsCounter)) - 1);
@@ -72,13 +72,12 @@ class Reactions {
         }
         
         for (const attrName in attrList) {
-        		console.log(attrName);
             if (attrList.hasOwnProperty(attrName)) {
                 el[attrName] = attrList[attrName];
             }
         }
 
-        return el
+        return el;
     }
 };
 
