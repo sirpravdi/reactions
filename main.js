@@ -7,29 +7,29 @@ class Reactions {
      * @param {object} data - object containing poll emojis and title.
      */
     constructor(data) {
-        let wrap = Reactions.prototype.domHelper("div", "reactions-wrapper");
+        const wrap = this.domHelper("div", "reactions-wrapper");
 
         document.body.append(wrap);
-        let pollTitle = Reactions.prototype.domHelper("span", "reactions-wrapper__title");
+        let pollTitle = this.domHelper("span", "reactions-wrapper__title");
 
         pollTitle.innerText = data.title;
         wrap.append(pollTitle);
         data.reactions.forEach(function (item, i, _arr) {
-            let counter = Reactions.prototype.domHelper("div", "reactions-wrapper__counter");
+            let counter = this.domHelper("div", "reactions-wrapper__counter");
 
             wrap.append(counter);
-            let label = Reactions.prototype.domHelper("label", "reactions-wrapper__emoji");
+            let label = this.domHelper("label", "reactions-wrapper__emoji");
 
             label.textContent = String.fromCodePoint(item);
             label.dataset.reactionsCounter = i;
             counter.append(label);
-            let input = Reactions.prototype.domHelper("input");
+            let input = this.domHelper("input");
 
             input.type = "radio";
             input.name = "poll";
-            input.addEventListener("click", Reactions.prototype.pollClick);
+            input.addEventListener("click", this.pollClick);
             label.append(input);
-            let index = Reactions.prototype.domHelper("span");
+            let index = this.domHelper("span");
 
             index.dataset.reactionsIndex = "index" + i;
             if (!localStorage.getItem("index" + i)) {
