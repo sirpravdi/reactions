@@ -11,10 +11,9 @@ class Reactions {
      */
     constructor(data) {
         this.wrap = this.createElement("div", "reactions-wrapper");
-        
         document.querySelector(data.parent).append(this.wrap);
         const pollTitle = this.createElement("span", "reactions-wrapper__title", {innerText: data.title});
-        
+
         this.wrap.append(pollTitle);
         data.reactions.forEach((item, i, arr) => {
             const counter = this.createElement("div", "reactions-wrapper__counter");
@@ -23,23 +22,23 @@ class Reactions {
             const label = this.createElement("label", "reactions-wrapper__emoji", {textContent: String.fromCodePoint(item)});
 
             label.dataset.reactionsCounter = i;
-            counter.append(label);                                    
+            counter.append(label);
             const input = this.createElement("input", null, {type: "radio", name: "poll"});
-            
-            input.addEventListener("click", input => this.pollClick(input.target));
+
+            input.addEventListener("click", click => this.pollClick(click.target));
             label.append(input);
- 
+
             if (!localStorage.getItem("reactionIndex" + i)) {
                 localStorage.setItem("reactionIndex" + i, 0);
             }
             const index = this.createElement("span", null, {innerText: localStorage.getItem("reactionIndex" + i)});
-            
+
             index.dataset.reactionsIndex = "index" + i;
 
             counter.append(index);
         });
     }
-    
+
     /** processing click on emoji */
     pollClick(clicked) {
         let prev = null;
@@ -48,12 +47,13 @@ class Reactions {
             prev = this.wrap.querySelector(".reactions-wrapper__emoji--picked");
             prev.classList.remove("reactions-wrapper__emoji--picked");
             const storageKey = "reactionIndex" + prev.dataset.reactionsCounter;
-            
+
             localStorage.setItem(storageKey, parseInt(localStorage.getItem(storageKey)) - 1);
             this.wrap.querySelector("[data-reactions-index=\"index" + prev.dataset.reactionsCounter + "\"]").innerText = localStorage.getItem(storageKey);
         }
         if ((!prev) || (prev != clicked.parentElement)) {
             const storageKey2 = "reactionIndex" + clicked.parentElement.dataset.reactionsCounter;
+
             clicked.parentElement.classList.add("reactions-wrapper__emoji--picked");
             localStorage.setItem(storageKey2, parseInt(localStorage.getItem(storageKey2)) + 1);
             this.wrap.querySelector("[data-reactions-index=\"index" + clicked.parentElement.dataset.reactionsCounter + "\"]").innerText = localStorage.getItem(storageKey2);
@@ -68,15 +68,15 @@ class Reactions {
         * @param {string} attrList - string containing attributes names for new element.
         */
         const el = document.createElement(elName);
-        
-        if(classList){
+
+        if (classList) {
             if (Array.isArray(classList)) {
                 el.classList.add(...classList);
             } else {
                 el.classList.add(classList);
             }
         }
-        
+
         for (const attrName in attrList) {
             if (attrList.hasOwnProperty(attrName)) {
                 el[attrName] = attrList[attrName];
@@ -87,4 +87,4 @@ class Reactions {
     }
 };
 
-new Reactions({parent: 'body', title: "What do you think?", reactions: ["0x1F601", "0x1F914", "0x1F644"]});
+new Reactions({parent: "body", title: "What do you think?", reactions: ["0x1F601", "0x1F914", "0x1F644"]});
