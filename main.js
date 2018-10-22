@@ -13,7 +13,7 @@ class Reactions {
         let pollTitle = this.createElement("span", "reactions-wrapper__title", {innerText: data.title});
         
         wrap.append(pollTitle);
-        data.reactions.forEach(function (item, i, arr) {
+        data.reactions.forEach((item, i, arr) => {
             let counter = Reactions.prototype.createElement("div", "reactions-wrapper__counter");
 
             wrap.append(counter);
