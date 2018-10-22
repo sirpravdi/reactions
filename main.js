@@ -14,22 +14,22 @@ class Reactions {
 
         pollTitle.innerText = data.title;
         wrap.append(pollTitle);
-        data.reactions.forEach(function (item, i, _arr) {
-            let counter = this.domHelper("div", "reactions-wrapper__counter");
+        data.reactions.forEach(function (item, i, arr) {
+            let counter = Reactions.prototype.domHelper("div", "reactions-wrapper__counter");
 
             wrap.append(counter);
-            let label = this.domHelper("label", "reactions-wrapper__emoji");
+            let label = Reactions.prototype.domHelper("label", "reactions-wrapper__emoji");
 
             label.textContent = String.fromCodePoint(item);
             label.dataset.reactionsCounter = i;
             counter.append(label);
-            let input = this.domHelper("input");
+            let input = Reactions.prototype.domHelper("input");
 
             input.type = "radio";
             input.name = "poll";
-            input.addEventListener("click", this.pollClick);
+            input.addEventListener("click", Reactions.prototype.pollClick);
             label.append(input);
-            let index = this.domHelper("span");
+            let index = Reactions.prototype.domHelper("span");
 
             index.dataset.reactionsIndex = "index" + i;
             if (!localStorage.getItem("index" + i)) {
