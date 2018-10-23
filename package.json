@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/sirpravdi/reactions/issues"
   },
-  "homepage": "https://github.com/sirpravdi/reactions#readme"
+  "homepage": "https://github.com/sirpravdi/reactions#readme",
+  "devDependencies": {
+    "eslint": "^5.7.0",
+    "eslint-config-codex": "github:codex-team/eslint-config"
+  },
+  "dependencies": {}
 }
