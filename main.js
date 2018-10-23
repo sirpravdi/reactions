@@ -41,13 +41,13 @@ class Reactions {
     counter.append(label);
     const input = this.createElement('input', null, {type: 'radio', name: 'poll'});
 
-    input.addEventListener('click', input => this.pollClick(input.target.parentElement));
+    input.addEventListener('click', click => this.pollClick(click.target.parentElement));
     label.append(input);
 
-    if (!localStorage.getItem('reactionIndex' + i)) {
-      localStorage.setItem('reactionIndex' + i, 0);
+    if (!window.localStorage.getItem('reactionIndex' + i)) {
+      window.localStorage.setItem('reactionIndex' + i, 0);
     }
-    const index = this.createElement('span', null, {innerText: localStorage.getItem('reactionIndex' + i)});
+    const index = this.createElement('span', null, {innerText: window.localStorage.getItem('reactionIndex' + i)});
 
     index.dataset.reactionsIndex = 'index' + i;
 
@@ -64,19 +64,19 @@ class Reactions {
         const counter2 = clicked.dataset.reactionsCounter;
 
         this.picked.classList.remove('reactions-wrapper__emoji--picked');
-        localStorage.setItem(storageKey, parseInt(localStorage.getItem(storageKey)) - 1);
-        this.wrap.querySelector('[data-reactions-index="index' + counter + '"]').innerText = localStorage.getItem(storageKey);
+        window.localStorage.setItem(storageKey, parseInt(window.localStorage.getItem(storageKey)) - 1);
+        this.wrap.querySelector('[data-reactions-index="index' + counter + '"]').innerText = window.localStorage.getItem(storageKey);
         clicked.classList.add('reactions-wrapper__emoji--picked');
-        localStorage.setItem(storageKey2, parseInt(localStorage.getItem(storageKey2)) + 1);
-        this.wrap.querySelector('[data-reactions-index="index' + counter2 + '"]').innerText = localStorage.getItem(storageKey2);
+        window.localStorage.setItem(storageKey2, parseInt(window.localStorage.getItem(storageKey2)) + 1);
+        this.wrap.querySelector('[data-reactions-index="index' + counter2 + '"]').innerText = window.localStorage.getItem(storageKey2);
         this.picked = clicked;
       } else {
         const storageKey = 'reactionIndex' + this.picked.dataset.reactionsCounter;
         const counter = this.picked.dataset.reactionsCounter;
 
         this.picked.classList.remove('reactions-wrapper__emoji--picked');
-        localStorage.setItem(storageKey, parseInt(localStorage.getItem(storageKey)) - 1);
-        this.wrap.querySelector('[data-reactions-index="index' + counter + '"]').innerText = localStorage.getItem(storageKey);
+        window.localStorage.setItem(storageKey, parseInt(window.localStorage.getItem(storageKey)) - 1);
+        this.wrap.querySelector('[data-reactions-index="index' + counter + '"]').innerText = window.localStorage.getItem(storageKey);
         this.picked = null;
       }
     } else {
@@ -84,8 +84,8 @@ class Reactions {
       const counter2 = clicked.dataset.reactionsCounter;
 
       clicked.classList.add('reactions-wrapper__emoji--picked');
-      localStorage.setItem(storageKey2, parseInt(localStorage.getItem(storageKey2)) + 1);
-      this.wrap.querySelector('[data-reactions-index="index' + counter2 + '"]').innerText = localStorage.getItem(storageKey2);
+      window.localStorage.setItem(storageKey2, parseInt(window.localStorage.getItem(storageKey2)) + 1);
+      this.wrap.querySelector('[data-reactions-index="index' + counter2 + '"]').innerText = window.localStorage.getItem(storageKey2);
       this.picked = clicked;
     }
   }
