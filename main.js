@@ -8,6 +8,7 @@ class Reactions {
      * @param {HTMLElement} data.parent - element where poll is inserted.
      * @param {string[]} data.reactions - list of poll emojis.
      * @param {string} title - poll title.
+     * @throws Will throw an error if parent element is not found.
      */
     constructor(data) {
         this.picked = null;
@@ -16,7 +17,7 @@ class Reactions {
         if (document.querySelector(data.parent)) {
             document.querySelector(data.parent).append(this.wrap);
         } else {
-            throw "Parent element is not found";
+            throw new Error("Parent element is not found");
         }
         const pollTitle = this.createElement("span", "reactions-wrapper__title", {innerText: data.title});
         
