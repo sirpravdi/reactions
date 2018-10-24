@@ -1,0 +1,24 @@
+{
+  "name": "reactions",
+  "version": "1.0.0",
+  "description": "Create reactions poll on your page\r ## How to use \r add \r ```\r Reactions.create({title: '', reactions: ['','','']});\r ```\r where \r * title - reactions poll title (example: title: 'What do yout think?')\r * reactions - array of emojis (example: ['0x1F600','0x1F914','0x1F644'])",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sirpravdi/reactions.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sirpravdi/reactions/issues"
+  },
+  "homepage": "https://github.com/sirpravdi/reactions#readme",
+  "devDependencies": {
+    "eslint": "^5.7.0",
+    "eslint-config-codex": "github:codex-team/eslint-config"
+  },
+  "dependencies": {}
+}

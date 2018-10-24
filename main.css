@@ -16,6 +16,8 @@
   padding: 5px;
   font-size: 20px;
   box-sizing: border-box;
+  margin: 0 10px;
+  display: inline-flex;
 }
 
 .reactions-wrapper__emoji input{
@@ -27,18 +29,16 @@
   font-family: 'Roboto', 'Arial', sans-serif;
 }
 
-.reactions-wrapper__emoji{
-  margin: 0 10px;
-}
-
 .reactions-wrapper__emoji:hover{
   box-shadow: 1px 1px 10px 0px gold;
 }
 
 .reactions-wrapper__counter{
   font-family: 'Roboto', 'Arial', sans-serif;
+  display: flex;
+  align-items: center;
 }
 
-.reactions-wrapper__emoji_picked{
+.reactions-wrapper__emoji--picked{
   background-color: rgba(255, 215, 0, 0.5);
 }
