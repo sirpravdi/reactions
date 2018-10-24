@@ -32,7 +32,7 @@ class Reactions {
        * return value of counter stored in localStorage.
        * @param {string} key - field name in localStorage.
        */
-    return window.localStorage.getItem(key);
+    return parseInt(window.localStorage.getItem(key));
   }
   
   /** set new value of counter stored in localStorage*/
@@ -56,15 +56,20 @@ class Reactions {
     const label = this.createElement('label', 'reactions-wrapper__emoji', {textContent: String.fromCodePoint(item)});
     const storageKey = 'reactionIndex' + i;
 
-    label.dataset.reactionsCounter = i;
+    label.dataset.index = i;
     const input = this.createElement('input', null, {type: 'radio', name: 'poll'});
 
     input.addEventListener('click', click => this.reactionClicked(input.parentElement));
-    if (!this.getCounter(storageKey)) {
-      this.setCounter(storageKey, 0);
-    }
-    const index = this.createElement('span', null, {innerText: this.getCounter(storageKey)});
+    
+    let votes = this.getCounter(storageKey);
 
+    if (!votes) {
+      votes = 0;
+      this.setCounter(storageKey, votes);
+    }
+
+    const index = this.createElement('span', null, {innerText: votes})
+    
     this.wrap.append(counter);
     counter.append(label);
     label.append(input);
@@ -77,40 +82,37 @@ class Reactions {
        * processing click on emoji
        * @param {HTMLElement} clickedEmoji - .
        */
-    console.log(clickedEmoji);
-    if (this.picked) {
-      if (this.picked != clickedEmoji) {
-        const counter = this.picked.dataset.reactionsCounter;
-        const counter2 = clickedEmoji.dataset.reactionsCounter;
-        const storageKey = 'reactionIndex' + counter;
-        const storageKey2 = 'reactionIndex' + counter2;
-
-        this.picked.classList.remove('reactions-wrapper__emoji--picked');
-        this.setCounter(storageKey, parseInt(this.getCounter(storageKey)) - 1);
-        this.picked.nextSibling.innerText = this.getCounter(storageKey);
-        clickedEmoji.classList.add('reactions-wrapper__emoji--picked');
-        this.setCounter(storageKey2, parseInt(this.getCounter(storageKey2)) + 1);
-        clickedEmoji.nextSibling.innerText = this.getCounter(storageKey2);
-        this.picked = clickedEmoji;
-      } else {
-        const counter = this.picked.dataset.reactionsCounter;
-        const storageKey = 'reactionIndex' + counter;
-
-        this.picked.classList.remove('reactions-wrapper__emoji--picked');
-        this.setCounter(storageKey, parseInt(this.getCounter(storageKey)) - 1);
-        this.picked.nextSibling.innerText = this.getCounter(storageKey);
-        this.picked = null;
-      }
-    } else {
-      const counter2 = clickedEmoji.dataset.reactionsCounter;
-      const storageKey2 = 'reactionIndex' + counter2;
+    if(!this.picked){
+      const clickedStorageKey = 'reactionIndex' + clickedEmoji.dataset.index;
       
       clickedEmoji.classList.add('reactions-wrapper__emoji--picked');
-      this.setCounter(storageKey2, parseInt(this.getCounter(storageKey2)) + 1);
-      clickedEmoji.nextSibling.innerText = this.getCounter(storageKey2);
+      this.setCounter(clickedStorageKey, this.getCounter(clickedStorageKey) + 1);
+      clickedEmoji.nextSibling.innerText = this.getCounter(clickedStorageKey);
       this.picked = clickedEmoji;
+      return;
     }
+    
+    if (this.picked != clickedEmoji) {
+      const pickedStorageKey = 'reactionIndex' + this.picked.dataset.index;
+      const clickedStorageKey = 'reactionIndex' + clickedEmoji.dataset.index;
+      
+      this.picked.classList.remove('reactions-wrapper__emoji--picked');
+      this.setCounter(pickedStorageKey, this.getCounter(pickedStorageKey) - 1);
+      this.picked.nextSibling.innerText = this.getCounter(pickedStorageKey);
+      clickedEmoji.classList.add('reactions-wrapper__emoji--picked');
+      this.setCounter(clickedStorageKey, this.getCounter(clickedStorageKey) + 1);
+      clickedEmoji.nextSibling.innerText = this.getCounter(clickedStorageKey);
+      this.picked = clickedEmoji;
+      return;
+    }
+    const pickedStorageKey = 'reactionIndex' + this.picked.dataset.index;
+
+    this.picked.classList.remove('reactions-wrapper__emoji--picked');
+    this.setCounter(pickedStorageKey, this.getCounter(pickedStorageKey) - 1);
+    this.picked.nextSibling.innerText = this.getCounter(pickedStorageKey);
+    this.picked = null;
   }
+  
   /** making creation of dom elements easier */
   createElement(elName, classList, attrList) {
     /**
