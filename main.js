@@ -2,6 +2,17 @@
 
 /** Class perpesenting a reactions */
 class Reactions {
+  /** returns style name */
+  static get CSS() {
+    return {
+      wrapper: 'reactions',
+      title: 'reactions__title',
+      emoji: 'emoji',
+      counter: 'emoji__counter',
+      picked: 'emoji--picked',
+      votes: ''
+    };
+  }
   /**
      * Create a reactions poll.
      * @param {object} data - object containing poll emojis, title and parent element.
@@ -15,7 +26,7 @@ class Reactions {
     this.reactions = [];
     this.wrap = this.createElement('div', Reactions.CSS.wrapper);
     const parent = document.querySelector(data.parent);
-    
+
     if (parent) {
       parent.append(this.wrap);
     } else {
@@ -26,7 +37,7 @@ class Reactions {
     this.wrap.append(pollTitle);
     data.reactions.forEach((item, i) => this.addReaction(item, i));
   }
-  
+
   /** increase counter and highlight emoji
     * @param {string} index - index of voted reaction.
     */
@@ -34,11 +45,11 @@ class Reactions {
     const storageKey = 'reactionIndex' + index;
     const votes = this.getCounter(storageKey) + 1;
 
-   	this.reactions[index].emoji.classList.add(Reactions.CSS.picked);
+    this.reactions[index].emoji.classList.add(Reactions.CSS.picked);
     this.setCounter(storageKey, votes);
     this.reactions[index].counter.textContent = votes;
   }
-  
+
   /** decrease counter and remove highlight
     * @param {string} index - index of unvoted reaction.
     */
@@ -46,18 +57,18 @@ class Reactions {
     const storageKey = 'reactionIndex' + index;
     const votes = this.getCounter(storageKey) - 1;
 
-   	this.reactions[index].emoji.classList.remove(Reactions.CSS.picked);
+    this.reactions[index].emoji.classList.remove(Reactions.CSS.picked);
     this.setCounter(storageKey, votes);
     this.reactions[index].counter.textContent = votes;
   }
-  
+
   /** return value of counter stored in localStorage
     * @param {string} key - field name in localStorage.
     */
-  getCounter(key) {  
+  getCounter(key) {
     return parseInt(window.localStorage.getItem(key));
   }
-  
+
   /** set new value of counter stored in localStorage
     * @param {string} key - field name in localStorage.
     * @param {string} value - new field value.
@@ -65,7 +76,7 @@ class Reactions {
   setCounter(key, value) {
     window.localStorage.setItem(key, value);
   }
-  
+
   /** create and insert reactions button
     * @param {string} item - emoji from data.reactions array.
     * @param {string} i - array counter.
@@ -83,16 +94,16 @@ class Reactions {
       this.setCounter(storageKey, votes);
     }
 
-    const index = this.createElement('span', Reactions.CSS.votes, {innerText: votes})
-    
+    const index = this.createElement('span', Reactions.CSS.votes, {innerText: votes});
+
     this.wrap.append(counter);
     counter.append(emoji);
     counter.append(index);
-    
-    this.reactions.push({emoji: emoji, counter: index})
+
+    this.reactions.push({emoji: emoji, counter: index});
   }
 
-  /** processing click on emoji 
+  /** processing click on emoji
     * @param {string} index - index of reaction clicked by user.
     */
   reactionClicked(index) {
@@ -101,27 +112,26 @@ class Reactions {
       this.picked = index;
       return;
     }
-    
+
     if (this.picked != index) { /** If clicked reaction and previosly picked reaction are not the same */
       this.vote(index);
       this.unvote(this.picked);
       this.picked = index;
-      
+
       return;
     }
-    
-    /*If clicked reaction and previosly picked reaction are the same*/
-    this.unvote(index);      
+
+    /* If clicked reaction and previosly picked reaction are the same*/
+    this.unvote(index);
     this.picked = null;
   }
-  
-  /** making creation of dom elements easier 
+
+  /** making creation of dom elements easier
     * @param {string} elName - string containing tagName.
     * @param {array|string} classList - string containing classes names for new element.
     * @param {string} attrList - string containing attributes names for new element.
     */
   createElement(elName, classList, attrList) {
-        
     const el = document.createElement(elName);
 
     if (classList) {
@@ -140,19 +150,6 @@ class Reactions {
 
     return el;
   }
-  
-  /** returns style name */
-   static get CSS() {
-  	return {
-    	wrapper: 'reactions',
-    	title: 'reactions__title',
-      emoji: 'emoji',
-      counter: 'emoji__counter',
-      picked: 'emoji--picked',
-      votes: ''
-		}
-  }
-  
 };
 
 new Reactions({parent: 'body', title: 'What do you think?', reactions: ['0x1F601', '0x1F914', '0x1F644']});
