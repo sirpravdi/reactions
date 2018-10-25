@@ -1,4 +1,12 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto');
+@font-face {
+  font-family: 'SFProText-Regular';
+  src: url('fonts/SFProText-Regular.eot');
+  src: url('fonts/SFProText-Regular.eot?#iefix') format('embedded-opentype'),
+       url('fonts/SFProText-Regular.woff') format('woff'),
+       url('fonts/SFProText-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 
 .reactions-wrapper{
   display: flex;
@@ -26,7 +34,7 @@
 
 .reactions-wrapper__title{
   align-self:center;  
-  font-family: 'Roboto', 'Arial', sans-serif;
+  font-family: 'SFProText-Regular', 'Arial', sans-serif;
 }
 
 .reactions-wrapper__emoji:hover{
