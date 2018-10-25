@@ -13,7 +13,7 @@ class Reactions {
   constructor(data) {
     this.picked = null;
     this.reactions = [];
-    this.wrap = this.createElement('div', 'reactions-wrapper');
+    this.wrap = this.createElement('div', 'reactions');
     const parent = document.querySelector(data.parent);
     
     if (parent) {
@@ -21,7 +21,7 @@ class Reactions {
     } else {
       throw new Error('Parent element is not found');
     }
-    const pollTitle = this.createElement('span', 'reactions-wrapper__title', {innerText: data.title});
+    const pollTitle = this.createElement('span', 'reactions__title', {innerText: data.title});
 
     this.wrap.append(pollTitle);
     data.reactions.forEach((item, i) => this.addReaction(item, i));
@@ -34,7 +34,7 @@ class Reactions {
     const storageKey = 'reactionIndex' + index;
     const votes = this.getCounter(storageKey) + 1;
 
-   	this.reactions[index].emoji.classList.add('reactions-wrapper__emoji--picked');
+   	this.reactions[index].emoji.classList.add('emoji--picked');
     this.setCounter(storageKey, votes);
     this.reactions[index].counter.textContent = votes;
   }
@@ -46,7 +46,7 @@ class Reactions {
     const storageKey = 'reactionIndex' + index;
     const votes = this.getCounter(storageKey) - 1;
 
-   	this.reactions[index].emoji.classList.remove('reactions-wrapper__emoji--picked');
+   	this.reactions[index].emoji.classList.remove('emoji--picked');
     this.setCounter(storageKey, votes);
     this.reactions[index].counter.textContent = votes;
   }
@@ -71,8 +71,8 @@ class Reactions {
     * @param {string} i - array counter.
     */
   addReaction(item, i) {
-    const counter = this.createElement('div', 'reactions-wrapper__counter');
-    const emoji = this.createElement('div', 'reactions-wrapper__emoji', {textContent: String.fromCodePoint(item)});
+    const counter = this.createElement('div', 'emoji__counter');
+    const emoji = this.createElement('div', 'emoji', {textContent: String.fromCodePoint(item)});
     const storageKey = 'reactionIndex' + i;
 
     emoji.addEventListener('click', click => this.reactionClicked(i));
@@ -83,7 +83,7 @@ class Reactions {
       this.setCounter(storageKey, votes);
     }
 
-    const index = this.createElement('span', 'reactions-wrapper__votes', {innerText: votes})
+    const index = this.createElement('span', 'emoji__votes', {innerText: votes})
     
     this.wrap.append(counter);
     counter.append(emoji);
