@@ -13,7 +13,7 @@ class Reactions {
   constructor(data) {
     this.picked = null;
     this.reactions = [];
-    this.wrap = this.createElement('div', 'reactions');
+    this.wrap = this.createElement('div', Reactions.CSS.wrapper);
     const parent = document.querySelector(data.parent);
     
     if (parent) {
@@ -21,7 +21,7 @@ class Reactions {
     } else {
       throw new Error('Parent element is not found');
     }
-    const pollTitle = this.createElement('span', 'reactions__title', {innerText: data.title});
+    const pollTitle = this.createElement('span', Reactions.CSS.title, {innerText: data.title});
 
     this.wrap.append(pollTitle);
     data.reactions.forEach((item, i) => this.addReaction(item, i));
@@ -30,11 +30,11 @@ class Reactions {
   /** increase counter and highlight emoji
     * @param {string} index - index of voted reaction.
     */
-  vote(index){
+  vote(index) {
     const storageKey = 'reactionIndex' + index;
     const votes = this.getCounter(storageKey) + 1;
 
-   	this.reactions[index].emoji.classList.add('emoji--picked');
+   	this.reactions[index].emoji.classList.add(Reactions.CSS.picked);
     this.setCounter(storageKey, votes);
     this.reactions[index].counter.textContent = votes;
   }
@@ -42,11 +42,11 @@ class Reactions {
   /** decrease counter and remove highlight
     * @param {string} index - index of unvoted reaction.
     */
-  unvote(index){
+  unvote(index) {
     const storageKey = 'reactionIndex' + index;
     const votes = this.getCounter(storageKey) - 1;
 
-   	this.reactions[index].emoji.classList.remove('emoji--picked');
+   	this.reactions[index].emoji.classList.remove(Reactions.CSS.picked);
     this.setCounter(storageKey, votes);
     this.reactions[index].counter.textContent = votes;
   }
@@ -54,7 +54,7 @@ class Reactions {
   /** return value of counter stored in localStorage
     * @param {string} key - field name in localStorage.
     */
-  getCounter(key){  
+  getCounter(key) {  
     return parseInt(window.localStorage.getItem(key));
   }
   
@@ -62,7 +62,7 @@ class Reactions {
     * @param {string} key - field name in localStorage.
     * @param {string} value - new field value.
     */
-  setCounter(key, value){
+  setCounter(key, value) {
     window.localStorage.setItem(key, value);
   }
   
@@ -71,8 +71,8 @@ class Reactions {
     * @param {string} i - array counter.
     */
   addReaction(item, i) {
-    const counter = this.createElement('div', 'emoji__counter');
-    const emoji = this.createElement('div', 'emoji', {textContent: String.fromCodePoint(item)});
+    const counter = this.createElement('div', Reactions.CSS.counter);
+    const emoji = this.createElement('div', Reactions.CSS.emoji, {textContent: String.fromCodePoint(item)});
     const storageKey = 'reactionIndex' + i;
 
     emoji.addEventListener('click', click => this.reactionClicked(i));
@@ -83,7 +83,7 @@ class Reactions {
       this.setCounter(storageKey, votes);
     }
 
-    const index = this.createElement('span', 'emoji__votes', {innerText: votes})
+    const index = this.createElement('span', Reactions.CSS.votes, {innerText: votes})
     
     this.wrap.append(counter);
     counter.append(emoji);
@@ -140,6 +140,19 @@ class Reactions {
 
     return el;
   }
+  
+  /** returns style name */
+   static get CSS() {
+  	return {
+    	wrapper: 'reactions',
+    	title: 'reactions__title',
+      emoji: 'emoji',
+      counter: 'emoji__counter',
+      picked: 'emoji--picked',
+      votes: ''
+		}
+  }
+  
 };
 
 new Reactions({parent: 'body', title: 'What do you think?', reactions: ['0x1F601', '0x1F914', '0x1F644']});
