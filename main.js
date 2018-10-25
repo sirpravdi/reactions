@@ -12,6 +12,7 @@ class Reactions {
      */
   constructor(data) {
     this.picked = null;
+    this.reactions = [];
     this.wrap = this.createElement('div', 'reactions-wrapper');
     const parent = document.querySelector(data.parent);
     
@@ -26,8 +27,31 @@ class Reactions {
     data.reactions.forEach((item, i) => this.addReaction(item, i));
   }
   
+  /** increase counter and highlight emoji
+    * @param {string} index - index of voted reaction.
+    */
+  vote(index){
+    const storageKey = 'reactionIndex' + index;
+    const votes = this.getCounter(storageKey) + 1;
+
+   	this.reactions[index].emoji.classList.add('reactions-wrapper__emoji--picked');
+    this.setCounter(storageKey, votes);
+    this.reactions[index].counter.textContent = votes;
+  }
+  
+  /** decrease counter and remove highlight
+    * @param {string} index - index of unvoted reaction.
+    */
+  unvote(index){
+    const storageKey = 'reactionIndex' + index;
+    const votes = this.getCounter(storageKey) - 1;
+
+   	this.reactions[index].emoji.classList.remove('reactions-wrapper__emoji--picked');
+    this.setCounter(storageKey, votes);
+    this.reactions[index].counter.textContent = votes;
+  }
+  
   /** return value of counter stored in localStorage
-    * return value of counter stored in localStorage.
     * @param {string} key - field name in localStorage.
     */
   getCounter(key){  
@@ -35,7 +59,6 @@ class Reactions {
   }
   
   /** set new value of counter stored in localStorage
-    * return value of counter stored in localStorage.
     * @param {string} key - field name in localStorage.
     * @param {string} value - new field value.
     */
@@ -44,7 +67,6 @@ class Reactions {
   }
   
   /** create and insert reactions button
-    * Create a reactions poll.
     * @param {string} item - emoji from data.reactions array.
     * @param {string} i - array counter.
     */
@@ -53,8 +75,7 @@ class Reactions {
     const emoji = this.createElement('div', 'reactions-wrapper__emoji', {textContent: String.fromCodePoint(item)});
     const storageKey = 'reactionIndex' + i;
 
-    emoji.dataset.index = i;
-    emoji.addEventListener('click', click => this.reactionClicked(emoji));
+    emoji.addEventListener('click', click => this.reactionClicked(i));
     let votes = this.getCounter(storageKey);
 
     if (!votes) {
@@ -67,56 +88,34 @@ class Reactions {
     this.wrap.append(counter);
     counter.append(emoji);
     counter.append(index);
+    
+    this.reactions.push({emoji: emoji, counter: index})
   }
 
   /** processing click on emoji 
-    * processing click on emoji
-    * @param {HTMLElement} clickedEmoji - reaction clicked by user.
+    * @param {string} index - index of reaction clicked by user.
     */
-  reactionClicked(clickedEmoji) {
-    if (!this.picked) { /** If there is no previously picked reaction */
-      const clickedStorageKey = 'reactionIndex' + clickedEmoji.dataset.index;
-      const clickedVotes = this.getCounter(clickedStorageKey) + 1;
-      
-      clickedEmoji.classList.add('reactions-wrapper__emoji--picked');
-      this.setCounter(clickedStorageKey, clickedVotes);
-      clickedEmoji.parentElement.querySelector('.reactions-wrapper__votes').textContent = clickedVotes;
-      
-      this.picked = clickedEmoji;
+  reactionClicked(index) {
+    if (this.picked == null) { /** If there is no previously picked reaction */
+      this.vote(index);
+      this.picked = index;
       return;
     }
     
-    if (this.picked != clickedEmoji) { /** If clicked reaction and previosly picked reaction are not the same */
-      const pickedStorageKey = 'reactionIndex' + this.picked.dataset.index;
-      const clickedStorageKey = 'reactionIndex' + clickedEmoji.dataset.index;
-      const pickedVotes = this.getCounter(pickedStorageKey) - 1;
-      const clickedVotes = this.getCounter(clickedStorageKey) + 1;
+    if (this.picked != index) { /** If clicked reaction and previosly picked reaction are not the same */
+      this.vote(index);
+      this.unvote(this.picked);
+      this.picked = index;
       
-      this.picked.classList.remove('reactions-wrapper__emoji--picked');
-      this.setCounter(pickedStorageKey, pickedVotes);
-      this.picked.parentElement.querySelector('.reactions-wrapper__votes').textContent = pickedVotes;
-      
-      clickedEmoji.classList.add('reactions-wrapper__emoji--picked');
-      this.setCounter(clickedStorageKey, clickedVotes);
-      clickedEmoji.parentElement.querySelector('.reactions-wrapper__votes').textContent = clickedVotes;
-     
-      this.picked = clickedEmoji;
       return;
     }
     
     /*If clicked reaction and previosly picked reaction are the same*/
-    const pickedStorageKey = 'reactionIndex' + this.picked.dataset.index;
-    const pickedVotes = this.getCounter(pickedStorageKey) - 1;
-
-    this.picked.classList.remove('reactions-wrapper__emoji--picked');
-    this.setCounter(pickedStorageKey, pickedVotes);
-    this.picked.parentElement.querySelector('.reactions-wrapper__votes').textContent = pickedVotes;
-    
+    this.unvote(index);      
     this.picked = null;
   }
   
   /** making creation of dom elements easier 
-    * making creation of dom elements easier
     * @param {string} elName - string containing tagName.
     * @param {array|string} classList - string containing classes names for new element.
     * @param {string} attrList - string containing attributes names for new element.
