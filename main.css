@@ -8,7 +8,7 @@
   font-style: normal;
 }
 
-.reactions-wrapper{
+.reactions{
   display: flex;
   flex-flow: column;
   min-width: 520px;
@@ -17,36 +17,39 @@
   margin-top: 5%;
 }
 
-.reactions-wrapper__emoji{
+.emoji{
   cursor: pointer;
-  border: 1px solid gainsboro;
-  border-radius: 20px;
-  padding: 5px;
-  font-size: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 35px;
+  border: solid 1px #d7d7d4;
   box-sizing: border-box;
   margin: 0 10px;
   display: inline-flex;
+  font-size: 16px;
+  align-items: center;
+  justify-content: center;
 }
 
-.reactions-wrapper__emoji input{
-  display: none;
-}
-
-.reactions-wrapper__title{
-  align-self:center;  
+.reactions__title{
+  align-self: center;  
   font-family: 'SFProText-Regular', 'Arial', sans-serif;
+  font-size: 15px;
+  color: #8b8b8b;
+  letter-spacing: 0.1px;
 }
 
-.reactions-wrapper__emoji:hover{
-  box-shadow: 1px 1px 10px 0px gold;
+.emoji:hover{
+  box-shadow: 0px 0px 7px 1px #ede8b2;
 }
 
-.reactions-wrapper__counter{
+.emoji__counter{
   font-family: 'Roboto', 'Arial', sans-serif;
   display: flex;
   align-items: center;
 }
 
-.reactions-wrapper__emoji--picked{
-  background-color: rgba(255, 215, 0, 0.5);
+.emoji--picked{
+  background-color: #fffacc;;
 }
+
