@@ -7,10 +7,9 @@ class Reactions {
     return {
       wrapper: 'reactions',
       title: 'reactions__title',
-      emoji: 'counter__emoji',
       reactionContainer: 'counter',
-      picked: 'counter__emoji--picked',
-      votes: ''
+      emoji: 'counter__emoji',
+      picked: 'counter__emoji--picked'
     };
   }
   /**
@@ -32,7 +31,7 @@ class Reactions {
     } else {
       throw new Error('Parent element is not found');
     }
-    const pollTitle = this.createElement('span', Reactions.CSS.title, {innerText: data.title});
+    const pollTitle = this.createElement('span', Reactions.CSS.title, {textContent: data.title});
 
     this.wrap.append(pollTitle);
     data.reactions.forEach((item, i) => this.addReaction(item, i));
@@ -94,7 +93,7 @@ class Reactions {
       this.setCounter(storageKey, votes);
     }
 
-    const counter = this.createElement('span', Reactions.CSS.votes, {innerText: votes});
+    const counter = this.createElement('span', null, {innerText: votes});
 
     this.wrap.append(reactionContainer);
     reactionContainer.append(emoji);
