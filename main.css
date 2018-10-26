@@ -1,13 +1,3 @@
-@font-face {
-  font-family: 'SFProText-Regular';
-  src: url('fonts/SFProText-Regular.eot');
-  src: url('fonts/SFProText-Regular.eot?#iefix') format('embedded-opentype'),
-       url('fonts/SFProText-Regular.woff') format('woff'),
-       url('fonts/SFProText-Regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
 .reactions {
   display: flex;
   flex-flow: column;
@@ -15,6 +5,9 @@
   flex-flow: row;
   justify-content: center;
   margin-top: 5%;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+  "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji",
+  "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 .counter__emoji{
@@ -33,7 +26,6 @@
 
 .reactions__title {
   align-self: center;  
-  font-family: 'SFProText-Regular', 'Arial', sans-serif;
   font-size: 15px;
   color: #8b8b8b;
   letter-spacing: 0.1px;
