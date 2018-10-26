@@ -98,7 +98,7 @@ class Reactions {
 
     this.wrap.append(reactionContainer);
     reactionContainer.append(emoji);
-    counter.append(index);
+    reactionContainer.append(index);
 
     this.reactions.push({emoji: emoji, counter: index});
   }
