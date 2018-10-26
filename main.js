@@ -7,9 +7,9 @@ class Reactions {
     return {
       wrapper: 'reactions',
       title: 'reactions__title',
-      emoji: 'emoji',
-      counter: 'emoji__counter',
-      picked: 'emoji--picked',
+      emoji: 'counter__emoji',
+      reactionContainer: 'counter',
+      picked: 'counter__emoji--picked',
       votes: ''
     };
   }
@@ -82,7 +82,7 @@ class Reactions {
     * @param {string} i - array counter.
     */
   addReaction(item, i) {
-    const counter = this.createElement('div', Reactions.CSS.counter);
+    const reactionContainer = this.createElement('div', Reactions.CSS.reactionContainer);
     const emoji = this.createElement('div', Reactions.CSS.emoji, {textContent: String.fromCodePoint(item)});
     const storageKey = 'reactionIndex' + i;
 
@@ -96,8 +96,8 @@ class Reactions {
 
     const index = this.createElement('span', Reactions.CSS.votes, {innerText: votes});
 
-    this.wrap.append(counter);
-    counter.append(emoji);
+    this.wrap.append(reactionContainer);
+    reactionContainer.append(emoji);
     counter.append(index);
 
     this.reactions.push({emoji: emoji, counter: index});
