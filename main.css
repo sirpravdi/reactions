@@ -17,7 +17,7 @@
   border-radius: 35px;
   border: solid 1px #d7d7d4;
   box-sizing: border-box;
-  margin: 0 10px;
+  margin-right: 11px;
   display: inline-flex;
   font-size: 16px;
   align-items: center;
@@ -29,6 +29,7 @@
   font-size: 15px;
   color: #8b8b8b;
   letter-spacing: 0.1px;
+  margin-right: 18px;
 }
 
 .counter__emoji:hover {
@@ -39,6 +40,7 @@
   font-family: 'Roboto', 'Arial', sans-serif;
   display: flex;
   align-items: center;
+  margin: 0 10px;
 }
 
 .counter__emoji--picked {
