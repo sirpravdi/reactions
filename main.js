@@ -9,7 +9,9 @@ class Reactions {
       title: 'reactions__title',
       reactionContainer: 'counter',
       emoji: 'counter__emoji',
-      picked: 'counter__emoji--picked'
+      picked: 'counter__emoji--picked',
+      votes: 'counter__votes',
+      votesPicked: 'counter__votes--picked'
     };
   }
   /**
@@ -46,6 +48,7 @@ class Reactions {
 
     this.reactions[index].emoji.classList.add(Reactions.CSS.picked);
     this.setCounter(storageKey, votes);
+    this.reactions[index].counter.classList.add(Reactions.CSS.votesPicked);
     this.reactions[index].counter.textContent = votes;
   }
 
@@ -58,6 +61,7 @@ class Reactions {
 
     this.reactions[index].emoji.classList.remove(Reactions.CSS.picked);
     this.setCounter(storageKey, votes);
+    this.reactions[index].counter.classList.remove(Reactions.CSS.votesPicked);
     this.reactions[index].counter.textContent = votes;
   }
 
@@ -93,11 +97,11 @@ class Reactions {
       this.setCounter(storageKey, votes);
     }
 
-    const counter = this.createElement('span', null, {innerText: votes});
+    const counter = this.createElement('span', Reactions.CSS.votes, {innerText: votes});
 
     this.wrap.append(reactionContainer);
     reactionContainer.append(emoji);
-    reactionContainer.append(votes);
+    reactionContainer.append(counter);
 
     this.reactions.push({emoji: emoji, counter: counter});
   }
