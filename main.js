@@ -94,13 +94,13 @@ class Reactions {
       this.setCounter(storageKey, votes);
     }
 
-    const index = this.createElement('span', Reactions.CSS.votes, {innerText: votes});
+    const counter = this.createElement('span', Reactions.CSS.votes, {innerText: votes});
 
     this.wrap.append(reactionContainer);
     reactionContainer.append(emoji);
-    reactionContainer.append(index);
+    reactionContainer.append(votes);
 
-    this.reactions.push({emoji: emoji, counter: index});
+    this.reactions.push({emoji: emoji, counter: counter});
   }
 
   /** processing click on emoji
