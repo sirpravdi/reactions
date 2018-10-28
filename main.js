@@ -97,7 +97,7 @@ class Reactions {
       this.setCounter(storageKey, votes);
     }
 
-    const counter = this.createElement('span', Reactions.CSS.votes, {innerText: votes});
+    const counter = this.createElement('span', Reactions.CSS.votes, {textContent: votes});
 
     reactionContainer.append(emoji);
     reactionContainer.append(counter);
