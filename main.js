@@ -28,15 +28,15 @@ class Reactions {
     this.wrap = this.createElement('div', Reactions.CSS.wrapper);
     const parent = document.querySelector(data.parent);
 
+    const pollTitle = this.createElement('span', Reactions.CSS.title, {textContent: data.title});
+
+    this.wrap.append(pollTitle);
+    data.reactions.forEach((item, i) => this.reactions.push(this.addReaction(item, i)));
     if (parent) {
       parent.append(this.wrap);
     } else {
       throw new Error('Parent element is not found');
     }
-    const pollTitle = this.createElement('span', Reactions.CSS.title, {textContent: data.title});
-
-    this.wrap.append(pollTitle);
-    data.reactions.forEach((item, i) => this.addReaction(item, i));
   }
 
   /** increase counter and highlight emoji
@@ -99,11 +99,11 @@ class Reactions {
 
     const counter = this.createElement('span', Reactions.CSS.votes, {innerText: votes});
 
-    this.wrap.append(reactionContainer);
     reactionContainer.append(emoji);
     reactionContainer.append(counter);
+    this.wrap.append(reactionContainer);
 
-    this.reactions.push({emoji: emoji, counter: counter});
+    return {emoji, counter};
   }
 
   /** processing click on emoji
