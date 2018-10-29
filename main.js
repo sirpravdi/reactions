@@ -83,6 +83,7 @@ class Reactions {
   /** create and insert reactions button
     * @param {string} item - emoji from data.reactions array.
     * @param {string} i - array counter.
+    * @returns {object} containing pair of emoji element and it's counter
     */
   addReaction(item, i) {
     const reactionContainer = this.createElement('div', Reactions.CSS.reactionContainer);
