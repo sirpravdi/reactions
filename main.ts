@@ -147,7 +147,7 @@ class Reactions {
 	  * @param {string} key - field name in localStorage.
 	  * @param {string} value - new field value.
 	  */
-	private setCounter(key: string, value: string | number): void {
+	private setCounter(key: string, value: string | number): void { 
 		window.localStorage.setItem(key, <string> value);
 	}
 }
