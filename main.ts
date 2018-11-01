@@ -26,7 +26,7 @@ class Reactions {
 			wrapper: 'reactions',
 		};
 	}
-	private picked: number = null;
+	private picked: number = undefined;
 	private reactions: Array<{ counter: HTMLElement; emoji: HTMLElement }> = [];
 	private wrap: HTMLElement;
 	/**
@@ -101,7 +101,7 @@ class Reactions {
 
 		/* If clicked reaction and previosly picked reaction are the same*/
 		this.unvote(index);
-		this.picked = null;
+		this.picked = undefined;
 	}
 
 	/** decrease counter and remove highlight

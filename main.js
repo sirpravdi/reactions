@@ -9,7 +9,7 @@ class Reactions {
        * @throws Will throw an error if parent element is not found.
        */
     constructor(data) {
-        this.picked = null;
+        this.picked = undefined;
         this.reactions = [];
         this.wrap = this.createElement('div', Reactions.CSS.wrapper);
         const parent = document.querySelector(data.parent);
@@ -75,7 +75,7 @@ class Reactions {
         }
         /* If clicked reaction and previosly picked reaction are the same*/
         this.unvote(index);
-        this.picked = null;
+        this.picked = undefined;
     }
     /** decrease counter and remove highlight
       * @param {string} index - index of unvoted reaction.
