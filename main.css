@@ -17,13 +17,13 @@
   letter-spacing: 0.1px;
 }
 
-.counter {
+.reactions-counter {
   display: flex;
   align-items: center;
   margin: 0 10px;
 }
 
-.counter__emoji{
+.reactions-counter__emoji {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -37,14 +37,14 @@
   cursor: pointer;
 }
 
-.counter__emoji:hover {
+.reactions-counter__emoji:hover {
   box-shadow: 0px 0px 7px 1px #ede8b2;
 }
 
-.counter__emoji--picked {
+.reactions-counter--picked > .reactions-counter__emoji {
   background-color: #fffacc;;
 }
 
-.counter__votes--picked{
+.reactions-counter--picked > .reactions-counter__votes {
   font-weight: 600;
 }

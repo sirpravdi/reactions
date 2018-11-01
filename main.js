@@ -7,11 +7,10 @@ class Reactions {
     return {
       wrapper: 'reactions',
       title: 'reactions__title',
-      reactionContainer: 'counter',
-      emoji: 'counter__emoji',
-      picked: 'counter__emoji--picked',
-      votes: 'counter__votes',
-      votesPicked: 'counter__votes--picked'
+      reactionContainer: 'reactions-counter',
+      emoji: 'reactions-counter__emoji',
+      picked: 'reactions-counter--picked',
+      votes: 'reactions-counter__votes'
     };
   }
   /**
@@ -46,9 +45,8 @@ class Reactions {
     const storageKey = 'reactionIndex' + index;
     const votes = this.getCounter(storageKey) + 1;
 
-    this.reactions[index].emoji.classList.add(Reactions.CSS.picked);
+    this.reactions[index].reactionContainer.classList.add(Reactions.CSS.picked);
     this.setCounter(storageKey, votes);
-    this.reactions[index].counter.classList.add(Reactions.CSS.votesPicked);
     this.reactions[index].counter.textContent = votes;
   }
 
@@ -59,9 +57,8 @@ class Reactions {
     const storageKey = 'reactionIndex' + index;
     const votes = this.getCounter(storageKey) - 1;
 
-    this.reactions[index].emoji.classList.remove(Reactions.CSS.picked);
+    this.reactions[index].reactionContainer.classList.remove(Reactions.CSS.picked);
     this.setCounter(storageKey, votes);
-    this.reactions[index].counter.classList.remove(Reactions.CSS.votesPicked);
     this.reactions[index].counter.textContent = votes;
   }
 
@@ -80,10 +77,17 @@ class Reactions {
     window.localStorage.setItem(key, value);
   }
 
+  /**
+    * @typedef {Object} Reaction
+    * @property {HTMLElement} reactionContainer
+    * @property {HTMLElement} emoji
+    * @property {HTMLElement} counter
+    */
+
   /** create and insert reactions button
     * @param {string} item - emoji from data.reactions array.
     * @param {string} i - array counter.
-    * @returns {object} containing pair of emoji element and it's counter
+    * @return {Reaction} - contains group of three elements - reactionContainer, emoji element and it's counter
     */
   addReaction(item, i) {
     const reactionContainer = this.createElement('div', Reactions.CSS.reactionContainer);
@@ -104,7 +108,7 @@ class Reactions {
     reactionContainer.append(counter);
     this.wrap.append(reactionContainer);
 
-    return {emoji, counter};
+    return {reactionContainer, emoji, counter};
   }
 
   /** processing click on emoji
