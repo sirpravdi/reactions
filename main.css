@@ -1,44 +1,50 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto');
-
-.reactions-wrapper{
+.reactions {
   display: flex;
-  flex-flow: column;
-  min-width: 520px;
   flex-flow: row;
   justify-content: center;
+  min-width: 520px;
   margin-top: 5%;
+  color: #8b8b8b;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+  "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji",
+  "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
-.reactions-wrapper__emoji{
-  cursor: pointer;
-  border: 1px solid gainsboro;
-  border-radius: 20px;
-  padding: 5px;
-  font-size: 20px;
-  box-sizing: border-box;
-  margin: 0 10px;
-  display: inline-flex;
+.reactions__title {
+  align-self: center;  
+  margin-right: 18px;
+  font-size: 15px;
+  letter-spacing: 0.1px;
 }
 
-.reactions-wrapper__emoji input{
-  display: none;
-}
-
-.reactions-wrapper__title{
-  align-self:center;  
-  font-family: 'Roboto', 'Arial', sans-serif;
-}
-
-.reactions-wrapper__emoji:hover{
-  box-shadow: 1px 1px 10px 0px gold;
-}
-
-.reactions-wrapper__counter{
-  font-family: 'Roboto', 'Arial', sans-serif;
+.reactions-counter {
   display: flex;
   align-items: center;
+  margin: 0 10px;
 }
 
-.reactions-wrapper__emoji--picked{
-  background-color: rgba(255, 215, 0, 0.5);
+.reactions-counter__emoji {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin-right: 11px;
+  border: solid 1px #d7d7d4;
+  border-radius: 35px;
+  box-sizing: border-box;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.reactions-counter__emoji:hover {
+  box-shadow: 0px 0px 7px 1px #ede8b2;
+}
+
+.reactions-counter--picked > .reactions-counter__emoji {
+  background-color: #fffacc;;
+}
+
+.reactions-counter--picked > .reactions-counter__votes {
+  font-weight: 600;
 }
