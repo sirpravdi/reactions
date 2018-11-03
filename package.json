@@ -17,8 +17,11 @@
   },
   "homepage": "https://github.com/sirpravdi/reactions#readme",
   "devDependencies": {
+    "concurrently": "^4.0.1",
     "eslint": "^5.7.0",
-    "eslint-config-codex": "github:codex-team/eslint-config"
+    "eslint-config-codex": "github:codex-team/eslint-config",
+    "lite-server": "^2.4.0",
+    "typescript": "^3.1.6"
   },
   "dependencies": {}
 }
