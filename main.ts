@@ -167,8 +167,10 @@ class Reactions {
 
     if (attrList) {
       for (const attrName in attrList) {
+        console.log(attrName);
+        console.log(el.getAttribute(attrName));
         if (attrList.hasOwnProperty(attrName)) {
-          el.setAttribute(attrName, attrList[attrName]);
+          el[attrName] = attrList[attrName];
         }
       }
     }
